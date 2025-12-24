@@ -1,4 +1,4 @@
-# Agora
+# Agora (Agentic Go Runtime Architecture)
 
 An agentic framework for Go, built from first principles.
 

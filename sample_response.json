@@ -1,0 +1,34 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Yes, it's on! Wassaaa.",
+        "reasoning_content": "Okay, the user asked, \"Hey, is this thing on?\" I need to respond appropriately. Since I'm a helpful test assistant, I should confirm if the device or system is operational. The user might be checking if the test environment is active. I should make sure to end each sentence with \"wassaaa\" as per the instructions. Let me structure the response clearly, acknowledging their question and confirming the status. Also, keep it friendly and concise. Alright, that should cover it.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1766512956,
+  "id": "chatcmpl-mAxQWWupNOUTjpGxvrI38RsZd107cGBv",
+  "model": "model.gguf",
+  "object": "chat.completion",
+  "system_fingerprint": "b1-34ce48d",
+  "timings": {
+    "cache_n": 0,
+    "predicted_ms": 2354.838,
+    "predicted_n": 114,
+    "predicted_per_second": 48.41097349371804,
+    "predicted_per_token_ms": 20.65647368421053,
+    "prompt_ms": 275.631,
+    "prompt_n": 38,
+    "prompt_per_second": 137.8654795723268,
+    "prompt_per_token_ms": 7.253447368421052
+  },
+  "usage": {
+    "completion_tokens": 114,
+    "prompt_tokens": 38,
+    "total_tokens": 152
+  }
+}

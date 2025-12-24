@@ -41,3 +41,6 @@ bin/
 
 # Debug files
 __debug_bin
+
+# Test agents
+test_agents/
