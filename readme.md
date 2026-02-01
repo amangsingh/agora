@@ -18,16 +18,103 @@ It is built for **Systems Engineers**, not Scripters. It rejects the fragility o
 | **Deployment** | 4GB Docker Image (Pip Hell) | **15MB Static Binary** |
 | **Security** | Opaque "Black Boxes" | **Zero Trust / Audit Ready** |
 
-## 🚀 Quick Start
+---
+
+## 🛠️ The Compiler (CLI)
+
+Agora v4.0 introduces the **Compiler** (`agora-cli`), a toolchain that transforms YAML blueprints into industrial-grade Go code.
 
 ### Installation
+
+```bash
+go install github.com/amangsingh/agora/cmd/agora-cli@latest
+```
+
+### Zero to Agent: The Workflow
+
+1.  **Initialize**: Scaffold a new project.
+    ```bash
+    agora-cli init my-agent
+    cd my-agent
+    ```
+
+2.  **Blueprint**: Edit the `agora.yaml` file to define your architecture.
+    ```yaml
+    project: my-agent
+    version: 1.0.0
+
+    graph:
+      entry: research_agent
+      max_steps: 10
+
+    nodes:
+      - name: research_agent
+        type: agent
+        model: llama3
+        instructions: "You are a senior researcher. Summarize the user's input."
+
+    edges:
+      - from: research_agent
+        to: END
+    ```
+
+3.  **Compile**: Generate the Go source code.
+    ```bash
+    agora-cli generate
+    ```
+
+4.  **Run**: Execute your binary agent.
+    ```bash
+    go mod tidy
+    go run .
+    ```
+
+### The Blueprint Schema (`agora.yaml`)
+
+The blueprint is the source of truth for your agent's topology.
+
+```yaml
+# Project Metadata
+project: secure-agent
+version: 0.1.0
+
+# Runtime Constraints
+graph:
+  entry: start_node
+  max_steps: 25  # Circuit breaker for infinite loops
+
+# Component Definitions
+nodes:
+  - name: start_node
+    type: agent
+    model: gpt-4o
+    instructions: "Route the user to the correct tool."
+
+  - name: tool_executor
+    type: tool_node
+    tools: ["file_reader", "http_client"]
+
+# Control Flow (The Graph)
+edges:
+  - from: start_node
+    to: tool_executor
+  - from: tool_executor
+    to: start_node  # Feedback loop
+```
+
+---
+
+## 📚 The Runtime (Library)
+
+If you prefer to write Go code manually, Agora provides a clean, zero-dependency library.
+
+### Quick Start
+
 ```bash
 go get github.com/amangsingh/agora
 ```
 
-### The "Hello World" Agent
-
-Unlike other frameworks, Agora requires you to define your architecture explicitly.
+### Manual Implementation Example
 
 ```go
 package main
@@ -50,21 +137,14 @@ func main() {
 	g.MaxSteps = 10 // Safety Circuit Breaker
 
 	// 2. Define Components
-	// Note: You would likely use NewOpenAICompatibleLLM or similar here
-	// model := llm.NewOpenAICompatibleLLM("http://localhost:11434/v1", "llama3", "ollama")
-	
-	// This example assumes a hypothetical constructor for brevity logic or mock.
-	// Check the llm package for precise constructors.
 	model := llm.NewOllamaLLM("http://localhost:11434/v1", "llama3")
 	agent := nodes.SimpleAgentNode(model, "You are a helpful assistant.")
 
 	// 3. Build the Architecture
 	g.AddNode("agent", agent)
 	g.SetEntry("agent")
-	// g.AddEdge("agent", "END") // Or rely on empty NextNode to finish
 
 	// 4. Execute
-	// Initialize strict conversation state
 	initialState := &agora.ConversationState{
 		BaseState: agora.NewBaseState(),
 		Input:     "Hello, Agora!",
@@ -90,7 +170,9 @@ Agora v4.0 introduces a **strict architectural rewrite**.
 * **Global State** is removed.
 * **Nodes** are now stateless functions.
 * **MaxSteps** is mandatory.
-Legacy v3 code is **incompatible**. Please consult the migration guide.
+* **Compiler** is the recommended way to start new projects.
+
+Legacy v3 code is **incompatible**.
 
 ## 📜 License
 
