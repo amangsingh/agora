@@ -44,3 +44,12 @@ __debug_bin
 
 # Test agents
 test_agents/
+
+# Antigravity / AI Agent files
+.agent/
+.cursorrules
+.ai-instructions
+
+# Local test artifacts (manual workarounds)
+cache/
+tmp/
