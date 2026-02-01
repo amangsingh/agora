@@ -163,6 +163,70 @@ func main() {
 }
 ```
 
+
+---
+
+## 🏛️ The Sovereign Server (API)
+
+For production deployment, Agora provides a specialized REST API server (`agora-server`).
+
+> [!WARNING]
+> **Security Notice**: This server is designed to be exposed. **Do NOT disable Authentication.**
+
+### Configuration
+The server is configured via Environment Variables:
+
+| Variable | Description | Default |
+| :--- | :--- | :--- |
+| `PORT` | Listening Port | `8080` |
+| `AGORA_DB` | SQLite Database Path | `./agora.db` |
+| `AGORA_AUTH_TOKEN` | **REQUIRED** Bearer Token | *(None)* |
+
+### Deployment Guide
+
+```bash
+# 1. Build
+go build -o agora-server cmd/agora-server/main.go
+
+# 2. Configure & Run
+export AGORA_AUTH_TOKEN="super-secret-key-change-me"
+./agora-server
+```
+
+### API Reference
+
+#### 1. Execute Agent
+`POST /run`
+
+Executes the agent graph with the provided input.
+
+**Headers:**
+`Authorization: Bearer <AGORA_AUTH_TOKEN>`
+
+**Payload:**
+```json
+{
+  "input": "Summarize the latest logs.",
+  "model": "llama3" 
+}
+```
+
+**Response:**
+```json
+{
+  "execution_id": "a1b2c3d4",
+  "status": "completed",
+  "output": "Here is the summary..."
+}
+```
+
+#### 2. Get History
+`GET /history?execution_id=<id>`
+
+Retrieves the chat logs for a specific execution.
+
+---
+
 ## ⚠️ Migration Notice (v4.0)
 
 Agora v4.0 introduces a **strict architectural rewrite**.
