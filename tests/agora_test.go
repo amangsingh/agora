@@ -1,4 +1,4 @@
-package agora_test
+package tests
 
 import (
 	"context"

@@ -1,17 +1,16 @@
-package agora_test
+package tests
 
 import (
 	"context"
 	"testing"
 
 	"github.com/amangsingh/agora"
-	"github.com/amangsingh/agora/llm"
 	"github.com/amangsingh/agora/nodes"
 )
 
 func TestIntegration_SimpleAgent(t *testing.T) {
 	// 1. Setup Manual Mock LLM
-	mockLLM := &llm.MockLLM{
+	mockLLM := &MockLLM{
 		InvokeFunc: func(ctx context.Context, request agora.ModelRequest) (agora.ModelResponse, error) {
 			return agora.ModelResponse{
 				Choices: []agora.Choice{

@@ -1,4 +1,4 @@
-package llm
+package tests
 
 import (
 	"context"
