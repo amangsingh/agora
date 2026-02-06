@@ -36,7 +36,117 @@ func Compile(blueprintPath, outputDir string) error {
 		return err
 	}
 
+	// 6. Generate Tests (DOC-02)
+	if err := generateTests(bp, outputDir); err != nil {
+		return err
+	}
+
 	return nil
+}
+
+// ... existing code ...
+
+func generateTests(bp *Blueprint, outDir string) error {
+	// 1. Generate Mock LLM
+	mockTmpl := `package main
+
+import (
+	"context"
+
+	"github.com/amangsingh/agora"
+	"github.com/amangsingh/agora/llm"
+)
+
+// MockLLM is a test helper that returns static responses.
+type MockLLM struct {
+	Response string
+}
+
+func (m *MockLLM) Invoke(ctx context.Context, req agora.ModelRequest) (agora.ModelResponse, error) {
+	return agora.ModelResponse{
+		Choices: []agora.Choice{
+			{
+				Message: agora.ChatMessage{
+					Role:    "assistant",
+					Content: m.Response,
+				},
+			},
+		},
+	}, nil
+}
+`
+	if err := SafeWriteFile(outDir, "mock_llm.go", []byte(mockTmpl)); err != nil {
+		return err
+	}
+
+	// 2. Generate Graph Test
+	testTmpl := `package main
+
+import (
+	"context"
+	"testing"
+
+	"github.com/amangsingh/agora"
+	"github.com/amangsingh/agora/nodes"
+)
+
+func TestGraphExecution(t *testing.T) {
+	// 1. Setup
+	g := NewGraph()
+	ctx := context.Background()
+
+	// 2. Swap real LLMs with Mocks (Dependency Injection pattern needed in generated code or we mock the nodes)
+	// For this Phase 2 generator, we are directly replacing the nodes in the map for testing 
+	// because NewGraph() returns strict nodes.
+	
+	// Create a mock
+	mock := &MockLLM{Response: "Test Response"}
+	
+	// Replace agents with mocked agents
+	// Note: In a real system we might use a Factory or specific Setter.
+	// Here we just overwrite the node in the map if it exists.
+	// Assuming specific node naming convention from blueprint.
+	{{range .Nodes}}
+	{{if eq .Type "agent"}}
+	// Mocking {{.Name}}
+	g.AddNode("{{.Name}}", nodes.SimpleAgentNode(mock, "System Prompt"))
+	{{end}}
+	{{end}}
+
+	// 3. Execute
+	initialState := &ConversationState{
+		BaseState: agora.NewBaseState(),
+		Input:     "Test Input",
+	}
+
+	finalState, err := g.Execute(ctx, initialState)
+	if err != nil {
+		t.Fatalf("Execution failed: %v", err)
+	}
+
+	// 4. Verify
+	fs := finalState.(*ConversationState)
+	if len(fs.History) == 0 {
+		t.Error("Expected history but got none")
+	} else {
+		last := fs.History[len(fs.History)-1]
+		if last.Content != "Test Response" {
+			t.Errorf("Expected 'Test Response', got '%s'", last.Content)
+		}
+	}
+}
+`
+	t, err := template.New("test").Parse(testTmpl)
+	if err != nil {
+		return fmt.Errorf("failed to parse test template: %w", err)
+	}
+
+	var buf bytes.Buffer
+	if err := t.Execute(&buf, bp); err != nil {
+		return fmt.Errorf("failed to execute test template: %w", err)
+	}
+
+	return SafeWriteFile(outDir, "graph_test.go", buf.Bytes())
 }
 
 func generateMain(bp *Blueprint, outDir string) error {
