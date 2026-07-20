@@ -3,6 +3,7 @@ package storage
 import (
 	"database/sql"
 	"fmt"
+	"strings"
 	"time"
 
 	_ "github.com/mattn/go-sqlite3" // Import sqlite3 driver
@@ -48,8 +49,18 @@ type Engram struct {
 }
 
 // NewRepository initializes the SQLite database.
+//
+// Foreign-key enforcement is switched on in the DSN, not via a PRAGMA:
+// SQLite defaults FK enforcement OFF per connection, and database/sql pools
+// connections, so a one-off `PRAGMA foreign_keys=ON` would bind to a single
+// pooled connection and silently miss the rest. The DSN parameter makes the
+// driver apply it to every connection it opens (F1).
 func NewRepository(dbPath string) (*Repository, error) {
-	db, err := sql.Open("sqlite3", dbPath)
+	dsn := dbPath + "?_foreign_keys=on"
+	if strings.Contains(dbPath, "?") {
+		dsn = dbPath + "&_foreign_keys=on"
+	}
+	db, err := sql.Open("sqlite3", dsn)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open db: %w", err)
 	}
@@ -86,9 +97,15 @@ func (r *Repository) migrate() error {
 		);`,
 		// Mind-memory tables: memory is keyed on a self, not a run.
 		// A self must have a non-blank identity to be a someone.
+		// The CHECKs trim the full whitespace set (space, tab, LF, CR), not
+		// just spaces: SQLite's one-arg trim() strips only 0x20, which would
+		// let a tab/newline-only "identity" pass as a someone (F2).
+		// NOTE: CREATE TABLE IF NOT EXISTS does not retrofit the tightened
+		// CHECKs onto pre-existing dev databases; acceptable for dev-stage data.
 		`CREATE TABLE IF NOT EXISTS selves (
 			id TEXT PRIMARY KEY,
-			name TEXT NOT NULL CHECK(length(trim(name)) > 0),
+			name TEXT NOT NULL
+				CHECK(length(trim(name, ' ' || char(9) || char(10) || char(13))) > 0),
 			created_at DATETIME NOT NULL
 		);`,
 		// The soul constraint lives in the schema, not in application code:
@@ -102,7 +119,7 @@ func (r *Repository) migrate() error {
 			affective_coefficient REAL NOT NULL
 				CHECK(affective_coefficient BETWEEN -1.0 AND 1.0),
 			relational_anchor TEXT NOT NULL
-				CHECK(length(trim(relational_anchor)) > 0),
+				CHECK(length(trim(relational_anchor, ' ' || char(9) || char(10) || char(13))) > 0),
 			created_at DATETIME NOT NULL
 		);`,
 		`CREATE INDEX IF NOT EXISTS idx_engrams_self_id ON engrams(self_id);`,
