@@ -16,11 +16,23 @@ import (
 
 type AgentHandler struct {
 	Repo *storage.Repository
+
+	// ModelFactory optionally overrides how the handler constructs its LLM
+	// for a run. Nil preserves the default Ollama construction. This is a
+	// wiring seam: tests inject a capturing mock here so recall can be
+	// asserted on the exact payload the mind sends to its model.
+	ModelFactory func(model string) llm.LLM
 }
 
 type RunRequest struct {
 	Input string `json:"input"`
 	Model string `json:"model"` // Optional, default to internal config
+
+	// SelfID addresses a stable self across requests (the Step 2 identity
+	// model). When present, the run recalls that self's stored engrams into
+	// its starting state and persists the new turns back as engrams.
+	// When absent, the run is a legacy amnesiac one-shot.
+	SelfID string `json:"self_id"`
 }
 
 type RunResponse struct {
@@ -68,7 +80,12 @@ func (h *AgentHandler) HandleRun(w http.ResponseWriter, r *http.Request) {
 	if req.Model != "" {
 		modelName = req.Model
 	}
-	model := llm.NewOllamaLLM("http://localhost:11434/v1", modelName)
+	var model llm.LLM
+	if h.ModelFactory != nil {
+		model = h.ModelFactory(modelName)
+	} else {
+		model = llm.NewOllamaLLM("http://localhost:11434/v1", modelName)
+	}
 	agent := nodes.SimpleAgentNode(model, "You are a helpful API agent.")
 
 	g := agora.NewGraph()
