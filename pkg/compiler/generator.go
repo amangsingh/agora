@@ -3,6 +3,7 @@ package compiler
 import (
 	"bytes"
 	"fmt"
+	"strings"
 	"text/template"
 )
 
@@ -16,6 +17,14 @@ func Compile(blueprintPath, outputDir string) error {
 
 	fmt.Printf("Compiling project '%s' version %s...\n", bp.Project, bp.Version)
 
+	return GenerateProject(bp, outputDir)
+}
+
+// GenerateProject emits a project from an already-parsed blueprint. It is
+// the press consumer of the declaration; ConstructSelf (construct.go) is the
+// library consumer. Both take the SAME *Blueprint value — one truth, two
+// consumers.
+func GenerateProject(bp *Blueprint, outputDir string) error {
 	// 2. Generate Main
 	if err := generateMain(bp, outputDir); err != nil {
 		return err
@@ -54,7 +63,6 @@ import (
 	"context"
 
 	"github.com/amangsingh/agora"
-	"github.com/amangsingh/agora/llm"
 )
 
 // MockLLM is a test helper that returns static responses.
@@ -205,11 +213,58 @@ require (
 	return SafeWriteFile(outDir, "go.mod", []byte(tmpl))
 }
 
+// goFieldName converts a declared snake_case state-field name into the
+// exported Go field the generated struct carries (resonance_index ->
+// ResonanceIndex). Names are parse-validated identifiers, so this never
+// mangles silently.
+func goFieldName(name string) string {
+	parts := strings.Split(name, "_")
+	var b strings.Builder
+	for _, p := range parts {
+		if p == "" {
+			continue
+		}
+		b.WriteString(strings.ToUpper(p[:1]))
+		b.WriteString(p[1:])
+	}
+	return b.String()
+}
+
+// goFieldType maps a declared M-bank field type to its Go emission. The
+// parser has already rejected unknown types; reaching the default here
+// means generateState was fed an unvalidated blueprint, which must fail
+// loudly, not emit a guess.
+func goFieldType(declared string) (string, error) {
+	if goType, ok := stateFieldTypes[declared]; ok {
+		return goType, nil
+	}
+	return "", fmt.Errorf("M bank: state field type '%s' has no Go emission (known: string, int, float, bool)", declared)
+}
+
+// generateState emits the generated project's state.go. It CONSUMES the
+// blueprint: every declared M-bank field becomes a typed field of the
+// generated ConversationState. (Step 8 killed the `_ = bp` defect here —
+// the emitted state used to be a fixed template regardless of declaration.)
 func generateState(bp *Blueprint, outDir string) error {
-	_ = bp // Suppress unused warning: v1 uses standard state, v2 will generate custom fields
-	// For now, we use the standard ConversationState.
-	// In the future, this could generate custom state structs based on YAML.
-	tmpl := `package main
+	type stateFieldGen struct {
+		GoName  string
+		GoType  string
+		YAMLKey string
+	}
+	fields := make([]stateFieldGen, 0, len(bp.State))
+	for _, f := range bp.State {
+		goType, err := goFieldType(f.Type)
+		if err != nil {
+			return fmt.Errorf("state field '%s': %w", f.Name, err)
+		}
+		fields = append(fields, stateFieldGen{
+			GoName:  goFieldName(f.Name),
+			GoType:  goType,
+			YAMLKey: f.Name,
+		})
+	}
+
+	const structTmpl = `package main
 
 import (
 	"encoding/json"
@@ -217,11 +272,27 @@ import (
 	"github.com/amangsingh/agora"
 )
 
+// ConversationState carries the transcript plus the M-bank fields this
+// project's blueprint declares.
 type ConversationState struct {
 	agora.BaseState ` + "`mapstructure:\",squash\"`" + `
 	History   []agora.ChatMessage ` + "`mapstructure:\"history\"`" + `
 	Input     string        ` + "`mapstructure:\"input\"`" + `
-}
+{{- range .Fields}}
+	{{.GoName}} {{.GoType}} ` + "`mapstructure:\"{{.YAMLKey}}\" json:\"{{.YAMLKey}}\"`" + ` // declared state field: {{.YAMLKey}}
+{{- end}}
+}`
+
+	t, err := template.New("state-struct").Parse(structTmpl)
+	if err != nil {
+		return fmt.Errorf("failed to parse state template: %w", err)
+	}
+	var buf bytes.Buffer
+	if err := t.Execute(&buf, struct{ Fields []stateFieldGen }{fields}); err != nil {
+		return fmt.Errorf("failed to execute state template: %w", err)
+	}
+
+	tmpl := buf.String() + `
 
 // ToChatHistory returns a freshly allocated slice combining History with the
 // pending Input (when not yet consumed). It shares no backing storage with

@@ -69,6 +69,33 @@ type KnowledgeSource struct {
 	URI  string
 }
 
+// SystemPrompt is a named member of the S bank. Step 8 makes the S bank
+// addressable by name; the unnamed Step 4 form (Blueprint.SystemPrompts)
+// stays valid and is folded in after the named entries, in declared order.
+type SystemPrompt struct {
+	Name    string
+	Content string
+}
+
+// StateField declares one field of the M bank's working-state shape. The
+// declared fields are seeded (zero-valued) into the Self's working state at
+// construction, so the M bank's shape is a property of the declaration, not
+// of whichever code happens to write state first.
+type StateField struct {
+	Name string
+	Type string // one of stateFieldZero's keys: string, int, float, bool
+}
+
+// stateFieldZero maps a declared M-bank field type to its zero value. An
+// unknown type fails Self construction loudly — declarations are never
+// silently dropped.
+var stateFieldZero = map[string]any{
+	"string": "",
+	"int":    0,
+	"float":  0.0,
+	"bool":   false,
+}
+
 // Blueprint is the declaration a Self is constructed from. At this step it is
 // a config struct; Step 8 feeds the same shape from a parsed YAML blueprint
 // and grows the banks to full declarative plurality, without the constructor
@@ -90,11 +117,21 @@ type Blueprint struct {
 	// (e.g. pkg/server wires llm.NewOllamaLLM).
 	ModelFactory func(model string) Model
 
-	// SystemPrompts declares the S bank: system-prompt / persona material.
+	// SystemPrompts declares the S bank in the unnamed Step 4 form. Kept
+	// for backward compatibility; folded into the S bank after System.
 	SystemPrompts []string
+
+	// System declares the S bank as named, addressable persona material
+	// (Step 8). Ordering is preserved; System entries precede SystemPrompts.
+	System []SystemPrompt
 
 	// Tools declares the T bank.
 	Tools []ToolDefinition
+
+	// State declares the M bank's working-state shape (Step 8). Declared
+	// fields are seeded zero-valued at construction; an unknown field type
+	// fails construction loudly.
+	State []StateField
 
 	// Knowledge declares the K bank.
 	Knowledge []KnowledgeSource
@@ -119,11 +156,12 @@ type Self struct {
 	factory      func(model string) Model
 	defaultModel string
 
-	t []ToolDefinition  // T: tools
-	s []string          // S: system-prompt / persona material
-	m BaseState         // M: working state for process lifetime
-	k []KnowledgeSource // K: knowledge sources
-	d MemoryStore       // D: the memory store handle
+	t          []ToolDefinition  // T: tools
+	s          []SystemPrompt    // S: named system-prompt / persona material
+	m          BaseState         // M: working state for process lifetime
+	stateShape []StateField      // M: the declared shape seeded into m
+	k          []KnowledgeSource // K: knowledge sources
+	d          MemoryStore       // D: the memory store handle
 }
 
 // NewSelf constructs a Self from its Blueprint. Construction is where the
@@ -134,16 +172,54 @@ func NewSelf(bp Blueprint) (*Self, error) {
 		return nil, fmt.Errorf("blueprint for self %q declares no ModelFactory: the L bank cannot be built", bp.ID)
 	}
 
+	// S bank: named entries first (Step 8), then the unnamed Step 4 form,
+	// declared order preserved. Duplicate names are a declaration defect and
+	// fail loudly.
+	sBank := make([]SystemPrompt, 0, len(bp.System)+len(bp.SystemPrompts))
+	sNames := make(map[string]bool, len(bp.System))
+	for i, sp := range bp.System {
+		if sp.Name == "" {
+			return nil, fmt.Errorf("blueprint for self %q declares an unnamed S-bank entry (index %d); unnamed prompts belong in SystemPrompts", bp.ID, i)
+		}
+		if sNames[sp.Name] {
+			return nil, fmt.Errorf("blueprint for self %q declares duplicate S-bank entry %q", bp.ID, sp.Name)
+		}
+		sNames[sp.Name] = true
+		sBank = append(sBank, sp)
+	}
+	for _, content := range bp.SystemPrompts {
+		sBank = append(sBank, SystemPrompt{Content: content})
+	}
+
 	s := &Self{
-		id:      bp.ID,
-		name:    bp.Name,
-		l:       make(map[string]Model, len(bp.Models)),
-		factory: bp.ModelFactory,
-		t:       append([]ToolDefinition(nil), bp.Tools...),
-		s:       append([]string(nil), bp.SystemPrompts...),
-		m:       NewBaseState(),
-		k:       append([]KnowledgeSource(nil), bp.Knowledge...),
-		d:       bp.Memory,
+		id:         bp.ID,
+		name:       bp.Name,
+		l:          make(map[string]Model, len(bp.Models)),
+		factory:    bp.ModelFactory,
+		t:          append([]ToolDefinition(nil), bp.Tools...),
+		s:          sBank,
+		m:          NewBaseState(),
+		stateShape: append([]StateField(nil), bp.State...),
+		k:          append([]KnowledgeSource(nil), bp.Knowledge...),
+		d:          bp.Memory,
+	}
+
+	// M bank: seed the declared working-state shape, zero-valued. An
+	// unknown declared type is a loud construction failure, never a drop.
+	mNames := make(map[string]bool, len(bp.State))
+	for i, f := range bp.State {
+		if f.Name == "" {
+			return nil, fmt.Errorf("blueprint for self %q declares an unnamed M-bank state field (index %d)", bp.ID, i)
+		}
+		if mNames[f.Name] {
+			return nil, fmt.Errorf("blueprint for self %q declares duplicate M-bank state field %q", bp.ID, f.Name)
+		}
+		mNames[f.Name] = true
+		zero, ok := stateFieldZero[f.Type]
+		if !ok {
+			return nil, fmt.Errorf("blueprint for self %q declares M-bank state field %q with unknown type %q (known: string, int, float, bool)", bp.ID, f.Name, f.Type)
+		}
+		s.m.Set(f.Name, zero)
 	}
 
 	for i, name := range bp.Models {
@@ -184,6 +260,64 @@ func (s *Self) ModelFor(name string) Model {
 	m := s.factory(name)
 	s.l[name] = m
 	return m
+}
+
+// DeclaredModels returns the names of the L bank's declared members, in no
+// particular order. Members constructed on demand by ModelFor for undeclared
+// names are included once constructed — the bank owns them thereafter.
+func (s *Self) DeclaredModels() []string {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	names := make([]string, 0, len(s.l))
+	for name := range s.l {
+		names = append(names, name)
+	}
+	return names
+}
+
+// Tool addresses a T-bank member by name.
+func (s *Self) Tool(name string) (ToolDefinition, bool) {
+	for _, td := range s.t {
+		if td.Function.Name == name {
+			return td, true
+		}
+	}
+	return ToolDefinition{}, false
+}
+
+// SystemPromptByName addresses a named S-bank member. Unnamed legacy
+// prompts (Blueprint.SystemPrompts) are part of the bank but not
+// addressable by name.
+func (s *Self) SystemPromptByName(name string) (SystemPrompt, bool) {
+	for _, sp := range s.s {
+		if sp.Name != "" && sp.Name == name {
+			return sp, true
+		}
+	}
+	return SystemPrompt{}, false
+}
+
+// Knowledge addresses a K-bank member by name.
+func (s *Self) Knowledge(name string) (KnowledgeSource, bool) {
+	for _, ks := range s.k {
+		if ks.Name == name {
+			return ks, true
+		}
+	}
+	return KnowledgeSource{}, false
+}
+
+// StateShape returns the declared M-bank shape this Self was constructed
+// with (a copy; the declaration is immutable after construction).
+func (s *Self) StateShape() []StateField {
+	return append([]StateField(nil), s.stateShape...)
+}
+
+// WorkingValue addresses one field of the M bank's working state by name.
+func (s *Self) WorkingValue(name string) any {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return s.m.Get(name)
 }
 
 // ResolveSelf is the single nameable choke point through which every
@@ -326,7 +460,11 @@ func (s *Self) recordEpisode() {
 // the turn. It is expressed here (rather than reusing nodes.SimpleAgentNode)
 // because nodes/ imports this package and can never be imported back.
 func (s *Self) agentStep(model Model) NodeFunc {
-	instructions := strings.Join(s.s, "\n\n")
+	parts := make([]string, 0, len(s.s))
+	for _, sp := range s.s {
+		parts = append(parts, sp.Content)
+	}
+	instructions := strings.Join(parts, "\n\n")
 	return func(ctx context.Context, st State) (NodeResult, error) {
 		messagesForLLM, err := st.ToChatHistory()
 		if err != nil {
