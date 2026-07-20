@@ -16,7 +16,6 @@ import (
 	"time"
 
 	"github.com/amangsingh/agora"
-	"github.com/amangsingh/agora/llm"
 	"github.com/amangsingh/agora/pkg/storage"
 )
 
@@ -50,10 +49,21 @@ func newRecallHarness(t *testing.T) (*AgentHandler, *captureLLM, *storage.Reposi
 		t.Fatalf("failed to init repo: %v", err)
 	}
 	mock := &captureLLM{}
-	handler := &AgentHandler{
-		Repo:         repo,
-		ModelFactory: func(string) llm.LLM { return mock },
+	// The injection seam moved with the ownership inversion (Step 4): the
+	// capturing mock is now planted in the Self's blueprint — the L bank is
+	// built ONCE at construction — instead of on the handler per request.
+	self, err := agora.NewSelf(agora.Blueprint{
+		ID:            "server-self",
+		Name:          "server-self",
+		Models:        []string{"mock"},
+		SystemPrompts: []string{"You are a helpful API agent."},
+		Memory:        repo,
+		ModelFactory:  func(string) agora.Model { return mock },
+	})
+	if err != nil {
+		t.Fatalf("failed to construct Self: %v", err)
 	}
+	handler := &AgentHandler{Repo: repo, Self: self}
 	return handler, mock, repo
 }
 

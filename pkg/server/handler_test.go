@@ -8,6 +8,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/amangsingh/agora"
 	"github.com/amangsingh/agora/pkg/storage"
 )
 
@@ -58,7 +59,19 @@ func TestHandler_BadInput(t *testing.T) {
 
 func TestHandler_Success(t *testing.T) {
 	repo, _ := storage.NewRepository(":memory:")
-	handler := &AgentHandler{Repo: repo}
+	// The run path now executes through the process-lifetime Self (Step 4
+	// inversion); the handler itself owns no model construction.
+	self, err := agora.NewSelf(agora.Blueprint{
+		ID:            "test-self",
+		Models:        []string{"mock-model"},
+		SystemPrompts: []string{"You are a helpful API agent."},
+		Memory:        repo,
+		ModelFactory:  func(string) agora.Model { return &captureLLM{} },
+	})
+	if err != nil {
+		t.Fatalf("NewSelf failed: %v", err)
+	}
+	handler := &AgentHandler{Repo: repo, Self: self}
 
 	body := []byte(`{"input": "Test Input", "model": "mock-model"}`)
 	req := httptest.NewRequest("POST", "/run", bytes.NewBuffer(body))
