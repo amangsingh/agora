@@ -110,9 +110,9 @@ func constructFromBlueprintFile(t *testing.T, path string) (*agora.Self, *counti
 // blueprint.
 func TestElevenLetter_AC1_PluralBanksSwappableByBlueprintOnly(t *testing.T) {
 	variants := []struct {
-		name                       string
-		modelA, modelB             string
-		knowA, knowB               string
+		name           string
+		modelA, modelB string
+		knowA, knowB   string
 	}{
 		{name: "variant-1", modelA: "fast", modelB: "deep", knowA: "notes", knowB: "docs"},
 		{name: "variant-2", modelA: "scout", modelB: "sage", knowA: "atlas", knowB: "journal"},
