@@ -223,12 +223,27 @@ type ConversationState struct {
 	Input     string        ` + "`mapstructure:\"input\"`" + `
 }
 
+// ToChatHistory returns a freshly allocated slice combining History with the
+// pending Input (when not yet consumed). It shares no backing storage with
+// History, so caller mutations can never corrupt the state.
 func (s *ConversationState) ToChatHistory() ([]agora.ChatMessage, error) {
-	return append(s.History, agora.ChatMessage{Role: "user", Content: s.Input}), nil
+	messages := make([]agora.ChatMessage, 0, len(s.History)+1)
+	messages = append(messages, s.History...)
+	if s.Input != "" {
+		messages = append(messages, agora.ChatMessage{Role: "user", Content: s.Input})
+	}
+	return messages, nil
 }
 
+// AppendTurn consumes the pending user Input exactly once, then appends the
+// output. Subsequent turns append only their own output — the user turn is
+// never re-injected into the transcript.
 func (s *ConversationState) AppendTurn(output agora.ChatMessage) error {
-	s.History = append(s.History, agora.ChatMessage{Role: "user", Content: s.Input}, output)
+	if s.Input != "" {
+		s.History = append(s.History, agora.ChatMessage{Role: "user", Content: s.Input})
+		s.Input = ""
+	}
+	s.History = append(s.History, output)
 	return nil
 }
 

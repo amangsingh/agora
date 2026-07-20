@@ -63,6 +63,28 @@ func ToolAgentNode(l llm.LLM, instructions string, registry agora.ToolRegistry) 
 	}
 }
 
+// coerceToolCalls returns the typed tool calls stored in state.
+//
+// tool_calls are stored as []agora.ToolCall, but State.DeepCopy is a JSON
+// round-trip (see ConversationState.DeepCopy), so on a forked state the
+// value arrives as []interface{} of maps. Re-encoding through JSON restores
+// the typed slice; anything that cannot decode into []agora.ToolCall is
+// genuinely malformed and reported as an error.
+func coerceToolCalls(data any) ([]agora.ToolCall, error) {
+	if calls, ok := data.([]agora.ToolCall); ok {
+		return calls, nil
+	}
+	raw, err := json.Marshal(data)
+	if err != nil {
+		return nil, fmt.Errorf("cannot re-encode tool calls for coercion: %w", err)
+	}
+	var calls []agora.ToolCall
+	if err := json.Unmarshal(raw, &calls); err != nil {
+		return nil, fmt.Errorf("cannot decode tool calls: %w", err)
+	}
+	return calls, nil
+}
+
 // ToolExecutorNode creates a NodeFunc that executes tool calls found in the state.
 func ToolExecutorNode(registry agora.ToolRegistry) agora.NodeFunc {
 	return func(ctx context.Context, s agora.State) (agora.NodeResult, error) {
@@ -73,14 +95,14 @@ func ToolExecutorNode(registry agora.ToolRegistry) agora.NodeFunc {
 			return agora.NodeResult{State: s}, nil
 		}
 
-		// 2. Safely cast the data to a slice of ToolCall.
-		// Use generic casting assurance if possible or mapstructure in robust systems.
-		// For now we assume direct casting works if it was set correctly.
-		toolCalls, ok := toolCallsData.([]agora.ToolCall)
-		if !ok {
-			// Try to recover if it was deserialized as generic maps (common in JSON roundtrips)
-			// But for strict Go types in memory, this should work.
-			return agora.NodeResult{State: s}, fmt.Errorf("invalid tool calls format in state")
+		// 2. Coerce the data back to a slice of ToolCall. A direct type
+		// assertion covers the in-memory path; after a DeepCopy (JSON
+		// round-trip, e.g. a ParallelNode fork) the stored slice degrades to
+		// generic JSON shapes, so a forked state must be re-cast rather than
+		// rejected — tool-calling and parallelism are not mutually exclusive.
+		toolCalls, err := coerceToolCalls(toolCallsData)
+		if err != nil {
+			return agora.NodeResult{State: s}, fmt.Errorf("invalid tool calls format in state: %w", err)
 		}
 
 		if len(toolCalls) == 0 {

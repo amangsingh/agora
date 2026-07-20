@@ -76,17 +76,31 @@ type ConversationState struct {
 }
 
 // ToChatHistory fulfills the State interface, providing the full list of
-// messages for an LLM call by combining the past History with the current Input.
-// This function creates a temporary slice and does NOT mutate the state.
+// messages for an LLM call by combining the past History with the current
+// Input (when the Input has not yet been consumed into History).
+// The returned slice is freshly allocated: it shares no backing storage with
+// History, so caller mutations can never corrupt the state.
 func (s *ConversationState) ToChatHistory() ([]ChatMessage, error) {
-	return append(s.History, ChatMessage{Role: "user", Content: s.Input}), nil
+	messages := make([]ChatMessage, 0, len(s.History)+1)
+	messages = append(messages, s.History...)
+	if s.Input != "" {
+		messages = append(messages, ChatMessage{Role: "user", Content: s.Input})
+	}
+	return messages, nil
 }
 
 // AppendTurn fulfills the State interface, persisting the completed turn
 // into the History. This function MUTATES the state's History slice.
-// It is responsible for saving both the user's prompt and the AI's response.
+// The pending user Input is consumed exactly once: it enters History ahead of
+// the first appended output and is then cleared, so subsequent turns (tool
+// results, follow-up assistant messages) append only their own output and the
+// user turn is never re-injected into the transcript.
 func (s *ConversationState) AppendTurn(output ChatMessage) error {
-	s.History = append(s.History, ChatMessage{Role: "user", Content: s.Input}, output)
+	if s.Input != "" {
+		s.History = append(s.History, ChatMessage{Role: "user", Content: s.Input})
+		s.Input = ""
+	}
+	s.History = append(s.History, output)
 	return nil
 }
 
