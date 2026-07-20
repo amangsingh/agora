@@ -68,6 +68,7 @@ func main() {
 	// 4. Router
 	mux := http.NewServeMux()
 	mux.HandleFunc("POST /run", handler.HandleRun)
+	mux.HandleFunc("POST /selves", handler.HandleEstablishSelf)
 	mux.HandleFunc("GET /history", handler.HandleGetHistory)
 
 	// 5. Middleware Chain

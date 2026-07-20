@@ -25,11 +25,10 @@ import (
 	"github.com/amangsingh/agora/pkg/storage"
 )
 
-// selfCredentialHeader is the transport of the per-self credential. It must
-// match the server's exported header constant once the gate lands; the
-// pre-change tree has no such constant, so the name is duplicated here to
-// keep the red capture compilable.
-const selfCredentialHeader = "X-Agora-Self-Credential"
+// selfCredentialHeader aliases the server's header constant. The red
+// capture on the pre-change tree carried this name as a local literal
+// (the constant did not exist there); it now binds to the real one.
+const selfCredentialHeader = SelfCredentialHeader
 
 // postRunRaw drives POST /run without failing the test on a non-200: the
 // gate tests assert on rejection statuses and exact body bytes.

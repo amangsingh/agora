@@ -6,6 +6,7 @@ package storage
 // shape (including its integer row id) stays a storage concern.
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/amangsingh/agora"
@@ -13,12 +14,21 @@ import (
 
 // EnsureSelf implements agora.MemoryStore. An unknown self id is registered
 // as a new self (the Step 2 identity model) whose memory starts empty —
-// preserving the resolution semantics the server's recall path had.
+// preserving the resolution semantics the server's recall path had. The
+// create is a single idempotent statement, not get-then-create: concurrent
+// first contact for the same new id must never lose on the primary key
+// (SEC gate, advisory C). Selves created here carry no credential and
+// therefore fail closed at verification; the credentialed path is
+// EstablishSelf.
 func (r *Repository) EnsureSelf(id string) error {
-	if _, err := r.GetSelf(id); err == nil {
-		return nil
+	_, err := r.db.Exec(
+		`INSERT INTO selves (id, name, created_at) VALUES (?, ?, ?)
+			ON CONFLICT(id) DO NOTHING`,
+		id, id, time.Now())
+	if err != nil {
+		return fmt.Errorf("failed to ensure self %q: %w", id, err)
 	}
-	return r.CreateSelf(Self{ID: id, Name: id, CreatedAt: time.Now()})
+	return nil
 }
 
 // RecallEngrams implements agora.MemoryStore, loading a self's stored engrams
@@ -27,6 +37,30 @@ func (r *Repository) EnsureSelf(id string) error {
 // contract boundary.
 func (r *Repository) RecallEngrams(selfID string) ([]agora.Engram, error) {
 	rows, err := r.GetEngrams(selfID)
+	if err != nil {
+		return nil, err
+	}
+	if rows == nil {
+		return nil, nil
+	}
+	engrams := make([]agora.Engram, 0, len(rows))
+	for _, e := range rows {
+		engrams = append(engrams, agora.Engram{
+			SelfID:               e.SelfID,
+			Content:              e.Content,
+			AffectiveCoefficient: e.AffectiveCoefficient,
+			RelationalAnchor:     e.RelationalAnchor,
+			CreatedAt:            e.CreatedAt,
+		})
+	}
+	return engrams, nil
+}
+
+// RecallEngramsWindowed implements agora.WindowedRecaller: the newest n
+// engrams of a self, chronological order, bounded at the query. Nil-ness is
+// preserved exactly as in RecallEngrams.
+func (r *Repository) RecallEngramsWindowed(selfID string, n int) ([]agora.Engram, error) {
+	rows, err := r.GetEngramsWindowed(selfID, n)
 	if err != nil {
 		return nil, err
 	}

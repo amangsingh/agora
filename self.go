@@ -140,6 +140,15 @@ type Blueprint struct {
 	// Self: episodes that address a self id then fail loudly rather than
 	// silently forgetting.
 	Memory MemoryStore
+
+	// RecallWindow declares the D bank's recall bound: how many of a self's
+	// newest engrams warm an episode. Zero means DefaultRecallWindow —
+	// recall is never unbounded by default (SEC gate, advisory B).
+	RecallWindow int
+
+	// Recall declares the D bank's recall strategy — the nameable seam
+	// (see recall.go). Nil means MostRecentN{N: RecallWindow}.
+	Recall RecallStrategy
 }
 
 // Self is the 1: the singular owner of identity and the live resource banks
@@ -162,6 +171,7 @@ type Self struct {
 	stateShape []StateField      // M: the declared shape seeded into m
 	k          []KnowledgeSource // K: knowledge sources
 	d          MemoryStore       // D: the memory store handle
+	recall     RecallStrategy    // D: the declared recall strategy over d
 
 	// episodeMu serializes episodes (Step 5 concurrency strategy, named:
 	// EPISODE SERIALIZATION). Every RunEpisode — request-driven through
@@ -215,6 +225,13 @@ func NewSelf(bp Blueprint) (*Self, error) {
 		stateShape: append([]StateField(nil), bp.State...),
 		k:          append([]KnowledgeSource(nil), bp.Knowledge...),
 		d:          bp.Memory,
+		recall:     bp.Recall,
+	}
+
+	// D bank recall: an undeclared strategy means most-recent-N over the
+	// declared window (bounded by default; SEC gate, advisory B).
+	if s.recall == nil {
+		s.recall = MostRecentN{N: bp.RecallWindow}
 	}
 
 	// M bank: seed the declared working-state shape, zero-valued. An
@@ -403,7 +420,9 @@ func (s *Self) RunEpisode(ctx context.Context, req EpisodeRequest) (EpisodeResul
 	var warmHistory []ChatMessage
 	var warmEngrams []Engram
 	if resolvedID != "" {
-		warmEngrams, err = s.d.RecallEngrams(resolvedID)
+		// The read is bounded by the declared recall strategy (SEC gate,
+		// advisory B): a windowed query shape over D, never the whole store.
+		warmEngrams, err = s.recall.Recall(s.d, resolvedID)
 		if err != nil {
 			return EpisodeResult{}, fmt.Errorf("loading engrams for self %q: %w", resolvedID, err)
 		}

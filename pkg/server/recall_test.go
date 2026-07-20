@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"net/http/httptest"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -78,10 +79,45 @@ func newRecallHarness(t *testing.T) (*AgentHandler, *captureLLM, *storage.Reposi
 	return handler, mock, repo
 }
 
+// testCredentials caches per-handler credentials minted through the SEC
+// gate's establish path, so the whole recall suite authenticates (AC7)
+// without every call site carrying credential plumbing.
+var (
+	testCredentialsMu sync.Mutex
+	testCredentials   = map[*AgentHandler]map[string]string{}
+)
+
+// credentialFor establishes selfID through the Self's establish mechanism on
+// first contact and returns the cached credential thereafter.
+func credentialFor(t *testing.T, h *AgentHandler, selfID string) string {
+	t.Helper()
+	testCredentialsMu.Lock()
+	defer testCredentialsMu.Unlock()
+	creds := testCredentials[h]
+	if creds == nil {
+		creds = map[string]string{}
+		testCredentials[h] = creds
+	}
+	if cred, ok := creds[selfID]; ok {
+		return cred
+	}
+	cred, err := h.Self.EstablishSelf(selfID)
+	if err != nil {
+		t.Fatalf("failed to establish self %q: %v", selfID, err)
+	}
+	creds[selfID] = cred
+	return cred
+}
+
 func postRun(t *testing.T, h *AgentHandler, selfID, input string) {
 	t.Helper()
 	body, _ := json.Marshal(RunRequest{Input: input, Model: "mock", SelfID: selfID})
 	req := httptest.NewRequest("POST", "/run", bytes.NewBuffer(body))
+	if selfID != "" {
+		// Authenticate as the addressed self (SEC gate, advisory A): the
+		// suite proves recall THROUGH the authn boundary, not around it.
+		req.Header.Set(SelfCredentialHeader, credentialFor(t, h, selfID))
+	}
 	w := httptest.NewRecorder()
 	h.HandleRun(w, req)
 	if w.Code != 200 {
@@ -173,9 +209,10 @@ func TestRecall_ReadsSelfKeyedStore(t *testing.T) {
 	handler, mock, repo := newRecallHarness(t)
 
 	const selfID = "self-keyed"
-	if err := repo.CreateSelf(storage.Self{ID: selfID, Name: "Keyed", CreatedAt: time.Now()}); err != nil {
-		t.Fatalf("failed to create self: %v", err)
-	}
+	// Establish (rather than raw-create) the self: under the SEC gate a
+	// server-addressable self is born credentialed, and this test's run
+	// authenticates as it.
+	credentialFor(t, handler, selfID)
 	if err := repo.SaveEngram(storage.Engram{
 		SelfID:               selfID,
 		Content:              "engram-only-fact: the lighthouse is painted red",

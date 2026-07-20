@@ -11,14 +11,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/amangsingh/agora"
 	"github.com/amangsingh/agora/pkg/storage"
 )
 
-// windowUnderTest mirrors the default recall window the gate introduces.
-// The pre-change tree has no window constant, so the value is written out
-// here to keep the red capture compilable; once the gate lands this must
-// equal agora's declared default.
-const windowUnderTest = 50
+// windowUnderTest is the default recall window. The red capture on the
+// pre-change tree carried this as a literal 50 (the constant did not exist
+// there); it now binds to the declared default.
+const windowUnderTest = agora.DefaultRecallWindow
 
 // TestRecallWindow_BoundsPayload (AC3): seed a self with more engrams than
 // the window, then run. The model payload must carry at most the window's

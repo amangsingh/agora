@@ -4,13 +4,25 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/amangsingh/agora"
 	"github.com/amangsingh/agora/pkg/storage"
 )
+
+// SelfCredentialHeader carries the per-self credential on every request that
+// addresses a self by id. The credential is minted once, by POST /selves.
+const SelfCredentialHeader = "X-Agora-Self-Credential"
+
+// selfAuthRejection is THE rejection for a request that fails self authn.
+// One status, one body, for every failure shape — wrong credential, missing
+// credential, self that does not exist — so responses carry no existence
+// oracle (SEC gate, advisory A).
+const selfAuthRejection = "Unauthorized: self authentication failed"
 
 // AgentHandler is the first consumer of the framework's Self: it owns the
 // HTTP concerns (parsing, the execution log, the response) and executes every
@@ -59,7 +71,22 @@ func (h *AgentHandler) HandleRun(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 2. Setup Execution
+	// 2. Self authn — the POLICY half of the SEC gate (advisory A), enforced
+	// at the membrane before anything is logged, resolved, or recalled. A
+	// request addressing a self must authenticate as that self; the
+	// verification mechanism lives on agora.Self beside the ResolveSelf
+	// choke point. Every failure — wrong credential, missing credential,
+	// unknown self, even a misconfigured D bank — collapses into the one
+	// indistinguishable rejection. The empty-SelfID amnesiac path predates
+	// selves and stays open: no self memory is at stake there.
+	if req.SelfID != "" {
+		if err := h.Self.VerifySelf(req.SelfID, r.Header.Get(SelfCredentialHeader)); err != nil {
+			http.Error(w, selfAuthRejection, http.StatusUnauthorized)
+			return
+		}
+	}
+
+	// 3. Setup Execution
 	execID := generateID()
 	logEntry := storage.Execution{
 		ID:        execID,
@@ -72,7 +99,7 @@ func (h *AgentHandler) HandleRun(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 3. Execute THROUGH the Self's banks (Synchronous for now).
+	// 4. Execute THROUGH the Self's banks (Synchronous for now).
 	// Recall, model access, the episode graph, and memory formation all live
 	// on the Self — the handler holds no per-request resources.
 	episode, err := h.Self.RunEpisode(r.Context(), agora.EpisodeRequest{
@@ -94,13 +121,13 @@ func (h *AgentHandler) HandleRun(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// 4. Update Record
+	// 5. Update Record
 	if err := h.Repo.UpdateExecution(execID, status, output); err != nil {
 		// Log error but we already processed
 		fmt.Printf("Failed to update execution: %v\n", err)
 	}
 
-	// 5. Response
+	// 6. Response
 	resp := RunResponse{
 		ExecutionID: execID,
 		Status:      status,
@@ -130,6 +157,58 @@ func (h *AgentHandler) HandleGetHistory(w http.ResponseWriter, r *http.Request) 
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(history)
+}
+
+// EstablishSelfRequest asks for a new self to be established.
+type EstablishSelfRequest struct {
+	SelfID string `json:"self_id"`
+}
+
+// EstablishSelfResponse returns the minted credential — the only time it is
+// ever transmitted. Losing it means losing access to the self's memory:
+// there is no recovery path at dev stage.
+type EstablishSelfResponse struct {
+	SelfID     string `json:"self_id"`
+	Credential string `json:"credential"`
+}
+
+// HandleEstablishSelf is the authn-establishing path (SEC gate, advisories
+// A and B): the ONLY server path that creates a self. Creation and
+// credential minting are one act, so anonymous /run traffic can never mint
+// selves rows (growth gate), and every server-established self is born
+// guarded. An id that is already taken — or lost to a concurrent
+// establisher — is a clean 409, never a 500 (advisory C).
+func (h *AgentHandler) HandleEstablishSelf(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	var req EstablishSelfRequest
+	dec := json.NewDecoder(http.MaxBytesReader(w, r.Body, 1048576))
+	dec.DisallowUnknownFields()
+	if err := dec.Decode(&req); err != nil {
+		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	if strings.TrimSpace(req.SelfID) == "" {
+		http.Error(w, "Missing self_id", http.StatusBadRequest)
+		return
+	}
+
+	credential, err := h.Self.EstablishSelf(req.SelfID)
+	if err != nil {
+		if errors.Is(err, agora.ErrSelfUnavailable) {
+			http.Error(w, "Self unavailable", http.StatusConflict)
+			return
+		}
+		http.Error(w, "Failed to establish self", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(EstablishSelfResponse{SelfID: req.SelfID, Credential: credential})
 }
 
 func generateID() string {

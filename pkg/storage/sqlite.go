@@ -1,7 +1,11 @@
 package storage
 
 import (
+	"crypto/rand"
+	"crypto/sha256"
+	"crypto/subtle"
 	"database/sql"
+	"encoding/hex"
 	"fmt"
 	"strings"
 	"time"
@@ -102,11 +106,16 @@ func (r *Repository) migrate() error {
 		// let a tab/newline-only "identity" pass as a someone (F2).
 		// NOTE: CREATE TABLE IF NOT EXISTS does not retrofit the tightened
 		// CHECKs onto pre-existing dev databases; acceptable for dev-stage data.
+		// credential_hash is the SEC gate's authn boundary (advisory A): the
+		// sha256 of the per-self credential minted at establishment. NULL
+		// marks a legacy or library-created self that never established a
+		// credential — verification fails closed for those.
 		`CREATE TABLE IF NOT EXISTS selves (
 			id TEXT PRIMARY KEY,
 			name TEXT NOT NULL
 				CHECK(length(trim(name, ' ' || char(9) || char(10) || char(13))) > 0),
-			created_at DATETIME NOT NULL
+			created_at DATETIME NOT NULL,
+			credential_hash TEXT
 		);`,
 		// The soul constraint lives in the schema, not in application code:
 		// NOT NULL rejects an omitted/NULL field, and the CHECK clauses reject
@@ -128,6 +137,37 @@ func (r *Repository) migrate() error {
 	for _, q := range queries {
 		if _, err := r.db.Exec(q); err != nil {
 			return fmt.Errorf("executing query %q: %w", q, err)
+		}
+	}
+
+	// Dev-stage schema catch-up (A4 posture, Step 3 precedent): CREATE TABLE
+	// IF NOT EXISTS does not retrofit credential_hash onto a pre-existing dev
+	// database, so add the column when it is missing. Not a migration
+	// ceremony — one additive column, no data rewrite.
+	hasCredentialHash := false
+	rows, err := r.db.Query(`PRAGMA table_info(selves)`)
+	if err != nil {
+		return fmt.Errorf("inspecting selves schema: %w", err)
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var cid int
+		var name, ctype string
+		var notNull, pk int
+		var dflt sql.NullString
+		if err := rows.Scan(&cid, &name, &ctype, &notNull, &dflt, &pk); err != nil {
+			return fmt.Errorf("scanning selves schema: %w", err)
+		}
+		if name == "credential_hash" {
+			hasCredentialHash = true
+		}
+	}
+	if err := rows.Err(); err != nil {
+		return fmt.Errorf("inspecting selves schema: %w", err)
+	}
+	if !hasCredentialHash {
+		if _, err := r.db.Exec(`ALTER TABLE selves ADD COLUMN credential_hash TEXT`); err != nil {
+			return fmt.Errorf("adding selves.credential_hash: %w", err)
 		}
 	}
 	return nil
@@ -199,6 +239,109 @@ func (r *Repository) UpdateExecution(id, status, output string) error {
 	query := `UPDATE executions SET status = ?, output = ? WHERE id = ?`
 	_, err := r.db.Exec(query, status, output, id)
 	return err
+}
+
+// dummyCredentialHash is compared against when the addressed self has no
+// stored credential (unknown id, or a legacy row that never established
+// one), so the compare happens — in constant time, against a same-shaped
+// value — on every verification path.
+var dummyCredentialHash = credentialHash("agora-dummy-credential-for-constant-time-compare")
+
+// credentialHash is the stored form of a credential: hex sha256.
+func credentialHash(credential string) string {
+	sum := sha256.Sum256([]byte(credential))
+	return hex.EncodeToString(sum[:])
+}
+
+// EstablishSelf implements agora.SelfEstablisher: create the self and mint
+// its credential in ONE act, so no server-established self ever exists
+// without one. The insert is idempotent under concurrent first contact
+// (advisory C): the loser of the race — like any caller addressing a taken
+// id — receives agora.ErrSelfUnavailable, never a constraint failure.
+// The plaintext credential is returned exactly once and only its sha256 is
+// stored.
+func (r *Repository) EstablishSelf(id, name string) (string, error) {
+	raw := make([]byte, 32)
+	if _, err := rand.Read(raw); err != nil {
+		return "", fmt.Errorf("failed to mint credential: %w", err)
+	}
+	credential := hex.EncodeToString(raw)
+
+	res, err := r.db.Exec(
+		`INSERT INTO selves (id, name, created_at, credential_hash) VALUES (?, ?, ?, ?)
+			ON CONFLICT(id) DO NOTHING`,
+		id, name, time.Now(), credentialHash(credential))
+	if err != nil {
+		return "", fmt.Errorf("failed to establish self: %w", err)
+	}
+	won, err := res.RowsAffected()
+	if err != nil {
+		return "", fmt.Errorf("failed to establish self: %w", err)
+	}
+	if won == 0 {
+		return "", agora.ErrSelfUnavailable
+	}
+	return credential, nil
+}
+
+// VerifySelfCredential implements agora.CredentialVerifier. Every failure
+// shape — unknown self, legacy self without a credential, wrong credential,
+// even a read error — collapses into the one agora.ErrSelfAuthentication
+// (fail closed, no existence oracle), and the hash compare is constant-time
+// on every path.
+func (r *Repository) VerifySelfCredential(selfID, credential string) error {
+	var stored sql.NullString
+	err := r.db.QueryRow(`SELECT credential_hash FROM selves WHERE id = ?`, selfID).Scan(&stored)
+	known := err == nil && stored.Valid && stored.String != ""
+
+	target := dummyCredentialHash
+	if known {
+		target = stored.String
+	}
+	match := subtle.ConstantTimeCompare([]byte(credentialHash(credential)), []byte(target)) == 1
+
+	if known && match {
+		return nil
+	}
+	return agora.ErrSelfAuthentication
+}
+
+// GetEngramsWindowed retrieves the newest n engrams of a self, returned in
+// chronological order (oldest of the window first). The bound lives in the
+// query — the rest of the store is never loaded, and never touched: this is
+// a read shape, not a compaction (SEC gate advisory B, architect addendum).
+// The full engram row travels: relational_anchor and affective_coefficient
+// are not stripped on the windowed path.
+func (r *Repository) GetEngramsWindowed(selfID string, n int) ([]Engram, error) {
+	if n <= 0 {
+		return nil, fmt.Errorf("recall window must be positive, got %d", n)
+	}
+	query := `SELECT id, self_id, content, affective_coefficient, relational_anchor, created_at
+		FROM engrams WHERE self_id = ? ORDER BY id DESC LIMIT ?`
+	rows, err := r.db.Query(query, selfID, n)
+	if err != nil {
+		return nil, fmt.Errorf("failed to query windowed engrams for self %q: %w", selfID, err)
+	}
+	defer rows.Close()
+
+	var engrams []Engram
+	for rows.Next() {
+		var e Engram
+		if err := rows.Scan(&e.ID, &e.SelfID, &e.Content,
+			&e.AffectiveCoefficient, &e.RelationalAnchor, &e.CreatedAt); err != nil {
+			return nil, fmt.Errorf("failed to scan engram: %w", err)
+		}
+		engrams = append(engrams, e)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	// The query walked newest-first to apply the LIMIT; recall speaks
+	// chronological order.
+	for i, j := 0, len(engrams)-1; i < j; i, j = i+1, j-1 {
+		engrams[i], engrams[j] = engrams[j], engrams[i]
+	}
+	return engrams, nil
 }
 
 // CreateSelf registers a stable self identity that memory can be keyed on.
