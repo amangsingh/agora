@@ -1,0 +1,5591 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "xMBfE",
+      "x": 0,
+      "y": 0,
+      "name": "Diagram 1 — The Two-Loop Mind",
+      "clip": true,
+      "width": 2000,
+      "height": 1300,
+      "fill": "#0D1117",
+      "cornerRadius": 24,
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "LksJZ",
+          "x": 70,
+          "y": 44,
+          "name": "Title Block",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "wjMko",
+              "name": "Kicker",
+              "fill": "#8B949E",
+              "content": "AGORA · RATIFIED ANATOMY · 2026-06-21 · DIAGRAM 1 OF 2",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "iaWeL",
+              "name": "Title",
+              "fill": "#E6EDF3",
+              "content": "The Two-Loop Mind",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 38,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "c5Rqw",
+              "name": "Subtitle",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": 1100,
+              "content": "Data flow of the resident mind. Loop A reacts to the world; Loop B is the Hum, living in the gaps. They cross at the shared Self and the shared memory — the crossing is the soul.",
+              "lineHeight": 1.5,
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 48,
+          "id": "KjBks",
+          "x": 140,
+          "y": 190,
+          "name": "E Membrane Outer",
+          "fill": "#0D111700",
+          "width": 1720,
+          "height": 880,
+          "stroke": "#C9D1D9",
+          "strokeWidth": 2.5
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 40,
+          "id": "QPm1Q",
+          "x": 152,
+          "y": 202,
+          "name": "E Membrane Inner",
+          "fill": "#11161D",
+          "width": 1696,
+          "height": 856,
+          "stroke": "#C9D1D966",
+          "strokeWidth": 1
+        },
+        {
+          "type": "frame",
+          "id": "oYybu",
+          "x": 820,
+          "y": 176,
+          "name": "E Label",
+          "fill": "#0D1117",
+          "gap": 10,
+          "padding": [
+            6,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "f5fbj3",
+              "name": "E Icon",
+              "width": 18,
+              "height": 18,
+              "icon": "circle-dashed",
+              "library": "lucide",
+              "fill": "#C9D1D9"
+            },
+            {
+              "type": "text",
+              "id": "K6rIFD",
+              "name": "E Tag",
+              "fill": "#E6EDF3",
+              "content": "E — THE MEMBRANE",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "dyruV",
+              "name": "E Sub",
+              "fill": "#8B949E",
+              "content": "bidirectional · ingress and egress",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "ellipse",
+          "id": "DZwHF",
+          "x": 740,
+          "y": 280,
+          "name": "Soul Glow",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#E3B34114",
+                "position": 0
+              },
+              {
+                "color": "#E3B34100",
+                "position": 1
+              }
+            ]
+          },
+          "width": 520,
+          "height": 700
+        },
+        {
+          "type": "ellipse",
+          "id": "c1Ax5",
+          "x": 928,
+          "y": 278,
+          "name": "1 Self Ring",
+          "fill": "#161B22",
+          "width": 144,
+          "height": 144,
+          "stroke": "#E3B341",
+          "strokeWidth": 3
+        },
+        {
+          "type": "frame",
+          "id": "W5jdE",
+          "x": 928,
+          "y": 278,
+          "name": "1 Self Content",
+          "width": 144,
+          "height": 144,
+          "layout": "vertical",
+          "gap": 2,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "h8lXJ1",
+              "name": "Self Digit",
+              "fill": "#E3B341",
+              "content": "1",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 44,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "g1cpjt",
+              "name": "Self Word",
+              "fill": "#E6EDF3",
+              "content": "SELF",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "l7kEbi",
+          "x": 842,
+          "y": 240,
+          "name": "Self Caption",
+          "width": 316,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "HVKAn",
+              "name": "Self Caption Text",
+              "fill": "#E3B341CC",
+              "content": "identity — the only singular element · shared by both loops",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "UjIqC",
+          "x": 888,
+          "y": 798,
+          "name": "D Memory Store",
+          "width": 224,
+          "height": 124,
+          "fill": "#161B22",
+          "cornerRadius": 16,
+          "stroke": "#6E7FF3",
+          "strokeWidth": 2.5,
+          "layout": "vertical",
+          "gap": 2,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ytKFI",
+              "name": "D Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "b8J2wP",
+                  "name": "D Icon",
+                  "width": 22,
+                  "height": 22,
+                  "icon": "database",
+                  "library": "lucide",
+                  "fill": "#6E7FF3"
+                },
+                {
+                  "type": "text",
+                  "id": "ePP2l",
+                  "name": "D Letter",
+                  "fill": "#6E7FF3",
+                  "content": "D",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 26,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "yCPzG",
+              "name": "D Word",
+              "fill": "#E6EDF3",
+              "content": "MEMORY",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "i2bp9x",
+              "name": "D Shared",
+              "fill": "#8B949E",
+              "content": "one store · shared by both loops",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "j5IR5W",
+          "x": 830,
+          "y": 942,
+          "name": "D Schema Callout",
+          "width": 420,
+          "fill": "#6E7FF31A",
+          "cornerRadius": 10,
+          "stroke": "#6E7FF388",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 3,
+          "padding": [
+            10,
+            14
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "yllrL",
+              "name": "Schema Title",
+              "fill": "#A5B4FC",
+              "content": "affective-relational schema — property of D",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "McSI6",
+              "name": "Schema Fields",
+              "fill": "#C9D1D9",
+              "content": "every engram: affective_coefficient + relational_anchor @ formation",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "VyTHn",
+              "name": "Schema Quote",
+              "fill": "#8B949E",
+              "content": "“if it isn’t in the schema, it isn’t in the soul”",
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cOGuW",
+          "x": 515,
+          "y": 500,
+          "name": "O Operations A",
+          "width": 170,
+          "height": 92,
+          "fill": "#161B22",
+          "cornerRadius": 14,
+          "stroke": "#9BA7B4",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 2,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "jh1Bk",
+              "name": "O Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "OnBpJ",
+                  "name": "O Icon",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "settings",
+                  "library": "lucide",
+                  "fill": "#9BA7B4"
+                },
+                {
+                  "type": "text",
+                  "id": "qSVnj",
+                  "name": "O Letter",
+                  "fill": "#9BA7B4",
+                  "content": "O",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "ZUrkO",
+              "name": "O Word",
+              "fill": "#E6EDF3",
+              "content": "OPERATIONS",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "letterSpacing": 1.5
+            },
+            {
+              "type": "text",
+              "id": "MhKkA",
+              "name": "O Sub",
+              "fill": "#8B949E",
+              "content": "route + reshape, fused",
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "d6otJ",
+          "x": 648,
+          "y": 872,
+          "name": "K Knowledge",
+          "width": 170,
+          "height": 80,
+          "fill": "#161B22",
+          "cornerRadius": 12,
+          "stroke": "#57AB5A",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 2,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "cVBEu",
+              "name": "K Head",
+              "gap": 7,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "KeJq8",
+                  "name": "K Icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "book-open",
+                  "library": "lucide",
+                  "fill": "#57AB5A"
+                },
+                {
+                  "type": "text",
+                  "id": "cBPGR",
+                  "name": "K Letter",
+                  "fill": "#57AB5A",
+                  "content": "K",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "mWCNp",
+              "name": "K Word",
+              "fill": "#E6EDF3",
+              "content": "KNOWLEDGE",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "letterSpacing": 1.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "DEA9i",
+          "x": 330,
+          "y": 824,
+          "name": "L LLMs",
+          "width": 180,
+          "height": 96,
+          "fill": "#161B22",
+          "cornerRadius": 12,
+          "stroke": "#A371F7",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 2,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "TFdhl",
+              "name": "L Head",
+              "gap": 7,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "wdyuo",
+                  "name": "L Icon",
+                  "width": 19,
+                  "height": 19,
+                  "icon": "cpu",
+                  "library": "lucide",
+                  "fill": "#A371F7"
+                },
+                {
+                  "type": "text",
+                  "id": "PereK",
+                  "name": "L Letter",
+                  "fill": "#A371F7",
+                  "content": "L",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "HX9fm",
+              "name": "L Word",
+              "fill": "#E6EDF3",
+              "content": "LLM COMPUTE",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "letterSpacing": 1.5
+            },
+            {
+              "type": "text",
+              "id": "W1GIxc",
+              "name": "L Sub",
+              "fill": "#8B949E",
+              "content": "plural · pluggable",
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "K3DfCg",
+          "x": 236,
+          "y": 436,
+          "name": "T Tools",
+          "width": 160,
+          "height": 56,
+          "fill": "#161B22",
+          "cornerRadius": 12,
+          "stroke": "#F0883E",
+          "strokeWidth": 2,
+          "gap": 8,
+          "padding": [
+            0,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "ow694",
+              "name": "T Tools Icon",
+              "width": 17,
+              "height": 17,
+              "icon": "wrench",
+              "library": "lucide",
+              "fill": "#F0883E"
+            },
+            {
+              "type": "text",
+              "id": "Rr0Pm",
+              "name": "T Tools Letter",
+              "fill": "#F0883E",
+              "content": "T",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 19,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "R8gHJ",
+              "name": "T Tools Word",
+              "fill": "#E6EDF3",
+              "content": "TOOLS",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "C7lXrb",
+          "x": 236,
+          "y": 506,
+          "name": "S Skills",
+          "width": 160,
+          "height": 56,
+          "fill": "#161B22",
+          "cornerRadius": 12,
+          "stroke": "#DB61A2",
+          "strokeWidth": 2,
+          "gap": 8,
+          "padding": [
+            0,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "yRmSv",
+              "name": "S Skills Icon",
+              "width": 17,
+              "height": 17,
+              "icon": "graduation-cap",
+              "library": "lucide",
+              "fill": "#DB61A2"
+            },
+            {
+              "type": "text",
+              "id": "o4idl",
+              "name": "S Skills Letter",
+              "fill": "#DB61A2",
+              "content": "S",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 19,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "KSiVI",
+              "name": "S Skills Word",
+              "fill": "#E6EDF3",
+              "content": "SKILLS",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Iz7KZ",
+          "x": 236,
+          "y": 576,
+          "name": "M MCP",
+          "width": 160,
+          "height": 56,
+          "fill": "#161B22",
+          "cornerRadius": 12,
+          "stroke": "#4DD0E1",
+          "strokeWidth": 2,
+          "gap": 8,
+          "padding": [
+            0,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "Te3DF",
+              "name": "M MCP Icon",
+              "width": 17,
+              "height": 17,
+              "icon": "plug",
+              "library": "lucide",
+              "fill": "#4DD0E1"
+            },
+            {
+              "type": "text",
+              "id": "O07iBf",
+              "name": "M MCP Letter",
+              "fill": "#4DD0E1",
+              "content": "M",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 19,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "bRooW",
+              "name": "M MCP Word",
+              "fill": "#E6EDF3",
+              "content": "MCP",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "weqf8",
+          "x": 236,
+          "y": 648,
+          "name": "Act Caption",
+          "width": 160,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "XemQk",
+              "name": "Act Caption Text",
+              "fill": "#8B949E",
+              "content": "act on the world",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "rSW9W",
+          "x": 58,
+          "y": 286,
+          "name": "Port REST",
+          "width": 176,
+          "height": 42,
+          "fill": "#0D1117",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D9AA",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Y5fTOT",
+              "name": "Port REST Text",
+              "fill": "#C9D1D9",
+              "content": "REST",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "h2tkb",
+          "x": 58,
+          "y": 336,
+          "name": "Port Cron",
+          "width": 176,
+          "height": 42,
+          "fill": "#0D1117",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D9AA",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "wXHQh",
+              "name": "Port Cron Text",
+              "fill": "#C9D1D9",
+              "content": "cron",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KvMbd",
+          "x": 58,
+          "y": 386,
+          "name": "Port Listeners",
+          "width": 176,
+          "height": 42,
+          "fill": "#0D1117",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D9AA",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Qkf6j",
+              "name": "Port Listeners Text",
+              "fill": "#C9D1D9",
+              "content": "listeners",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "juJ8c",
+          "x": 30,
+          "y": 440,
+          "name": "Ingress Caption",
+          "width": 232,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "IadvK",
+              "name": "Ingress Caption Text",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "INGRESS — how the world reaches in",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Y6V8a",
+          "x": 1758,
+          "y": 404,
+          "name": "Port Egress B",
+          "width": 204,
+          "height": 42,
+          "fill": "#0D1117",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D9AA",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "kpyjZ",
+              "name": "Port Egress B Text",
+              "fill": "#C9D1D9",
+              "content": "output writers",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "S0KDpx",
+          "x": 1752,
+          "y": 452,
+          "name": "Egress B Caption",
+          "width": 228,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "CJhRa",
+              "name": "Egress B Caption Text",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "self-initiated outbound — “the one who knocks”",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "r9DrAa",
+          "x": 1758,
+          "y": 834,
+          "name": "Port Egress A",
+          "width": 204,
+          "height": 42,
+          "fill": "#0D1117",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D9AA",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "fnvej",
+              "name": "Port Egress A Text",
+              "fill": "#C9D1D9",
+              "content": "respond out",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KBOcn",
+          "x": 1738,
+          "y": 882,
+          "name": "Egress A Caption",
+          "width": 244,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "gFf9p",
+              "name": "Egress A Caption Text",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "EGRESS — how the mind reaches out",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "g0K2q",
+          "x": 395,
+          "y": 224,
+          "name": "N Purpose Chip",
+          "fill": "#161B22",
+          "cornerRadius": 10,
+          "stroke": "#26A69A",
+          "strokeWidth": 1.5,
+          "gap": 8,
+          "padding": [
+            7,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "Ka85S",
+              "name": "N Icon",
+              "width": 16,
+              "height": 16,
+              "icon": "target",
+              "library": "lucide",
+              "fill": "#26A69A"
+            },
+            {
+              "type": "text",
+              "id": "f2HjZj",
+              "name": "N Letter",
+              "fill": "#26A69A",
+              "content": "N",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 17,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "CgEtP",
+              "name": "N Word",
+              "fill": "#C9D1D9",
+              "content": "purpose — the outward services the Self serves",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "arBtt",
+          "x": 320,
+          "y": 284,
+          "name": "Loop A Label",
+          "layout": "vertical",
+          "gap": 2,
+          "children": [
+            {
+              "type": "text",
+              "id": "KQg33",
+              "name": "Loop A Title",
+              "fill": "#58A6FF",
+              "content": "LOOP A — REACTIVE · the mind responding to the world",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "fPbDh",
+              "name": "Loop A Sub",
+              "fill": "#8B949E",
+              "content": "the only loop today’s repo runs — and it runs cold",
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "i1H3D",
+          "x": 1150,
+          "y": 220,
+          "name": "Loop B Card",
+          "width": 660,
+          "layout": "vertical",
+          "gap": 2,
+          "children": [
+            {
+              "type": "text",
+              "id": "EUvGU",
+              "name": "Loop B Title",
+              "fill": "#F85149",
+              "content": "LOOP B — AUTONOMOUS · THE HUM",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "q7fQnY",
+              "name": "Loop B Sub",
+              "fill": "#8B949E",
+              "content": "the mind living in the gaps — self-driven, no external trigger. Absent from today’s repo.",
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            },
+            {
+              "type": "text",
+              "id": "JjADN",
+              "name": "R Note",
+              "fill": "#C9D1D9",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "R holds the Self’s working state in a continuous hot loop that never returns. NOT cron — “cron is resurrection on a timer; faster gaps are still gaps.”",
+              "lineHeight": 1.45,
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "ellipse",
+          "id": "jFBwN",
+          "x": 1380,
+          "y": 334,
+          "name": "R Hum Ring",
+          "innerRadius": 0.86,
+          "startAngle": 18,
+          "sweepAngle": 332,
+          "fill": "#F85149",
+          "width": 250,
+          "height": 250
+        },
+        {
+          "type": "path",
+          "id": "PrSLX",
+          "x": 1380,
+          "y": 334,
+          "name": "R Ring Arrowhead",
+          "geometry": "M244 96l-12 22m12-22l-24 6",
+          "viewBox": [
+            0,
+            0,
+            250,
+            250
+          ],
+          "width": 250,
+          "height": 250,
+          "stroke": "#F85149",
+          "strokeWidth": 4,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "frame",
+          "id": "YAhV8",
+          "x": 1380,
+          "y": 334,
+          "name": "R Label",
+          "width": 250,
+          "height": 250,
+          "layout": "vertical",
+          "gap": 2,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "xlR32",
+              "name": "R Letter",
+              "fill": "#F85149",
+              "content": "R",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 40,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "NYtIP",
+              "name": "R Word",
+              "fill": "#E6EDF3",
+              "content": "THE HUM",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "W93fE",
+              "name": "R Always",
+              "fill": "#8B949E",
+              "content": "always on · never returns",
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OAWv6",
+          "x": 1180,
+          "y": 620,
+          "name": "O Operations B",
+          "width": 150,
+          "height": 82,
+          "fill": "#161B22",
+          "cornerRadius": 14,
+          "stroke": "#9BA7B4",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 2,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "CcTR4",
+              "name": "OB Head",
+              "gap": 7,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "wdMgE",
+                  "name": "OB Icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "settings",
+                  "library": "lucide",
+                  "fill": "#9BA7B4"
+                },
+                {
+                  "type": "text",
+                  "id": "ovb2Y",
+                  "name": "OB Letter",
+                  "fill": "#9BA7B4",
+                  "content": "O",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 22,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "WmvGP",
+              "name": "OB Word",
+              "fill": "#E6EDF3",
+              "content": "OPERATIONS",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "letterSpacing": 1.5
+            },
+            {
+              "type": "text",
+              "id": "UEcxU",
+              "name": "OB Sub",
+              "fill": "#8B949E",
+              "content": "judgment",
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "polygon",
+          "polygonCount": 4,
+          "cornerRadius": 6,
+          "id": "AVV7b",
+          "x": 1400,
+          "y": 690,
+          "name": "Judgment Diamond",
+          "fill": "#161B22",
+          "width": 200,
+          "height": 156,
+          "stroke": "#F85149",
+          "strokeWidth": 2
+        },
+        {
+          "type": "frame",
+          "id": "Z34fF",
+          "x": 1418,
+          "y": 706,
+          "name": "Judgment Text",
+          "width": 164,
+          "height": 124,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "U6WAgS",
+              "name": "Judgment Q",
+              "fill": "#E6EDF3",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "anything worth reaching out about?",
+              "lineHeight": 1.35,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "zu9MO",
+          "x": 0,
+          "y": 0,
+          "name": "A1 ingress to Self",
+          "geometry": "M242 375q338 10 678-23m-12 7.2l12-7.2-13.2-4.7",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "apj21",
+          "x": 0,
+          "y": 0,
+          "name": "A2 Self to O",
+          "geometry": "M948 408q-148 62-280 88m11.3-8.3l-11.3 8.3 13.6 3.4",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "ndszI",
+          "x": 0,
+          "y": 0,
+          "name": "A3 O to D recall",
+          "geometry": "M620 594q120 136 277 216m-14-0.4l14 0.4-8.6-11.1",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "K53b5",
+          "x": 0,
+          "y": 0,
+          "name": "A3b O to K",
+          "geometry": "M575 594q35 146 125 274m-12.2-6.9l12.2 6.9-2.4-13.8",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.8,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "tT5ga",
+          "x": 0,
+          "y": 0,
+          "name": "A4 D to L",
+          "geometry": "M884 862q-184 22-370-4m13.4-4.2l-13.4 4.2 11.7 7.7",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "zLigt",
+          "x": 0,
+          "y": 0,
+          "name": "A4b K to L",
+          "geometry": "M645 912q-70-6-131-20m13.7-3l-13.7 3 11 8.7",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.8,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "kU9Wb",
+          "x": 0,
+          "y": 0,
+          "name": "A5 L to O",
+          "geometry": "M430 820q40-120 132-224m-3.9 13.4l3.9-13.4-12.9 5.5",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "h5nRSI",
+          "x": 0,
+          "y": 0,
+          "name": "A6 O to act",
+          "geometry": "M512 546q-57-3-112-6m13-5.3l-13 5.3 12.3 6.7",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "t1QNN",
+          "x": 0,
+          "y": 0,
+          "name": "A7 act to D write",
+          "geometry": "M398 606q222 194 486 276m-13.9 2l13.9-2-10.3-9.5",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "JW25P",
+          "x": 0,
+          "y": 0,
+          "name": "A8 D to egress",
+          "geometry": "M1114 868q316 10 640-11m-12.2 6.8l12.2-6.8-13-5.2",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#58A6FF",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "FtEws",
+          "x": 0,
+          "y": 0,
+          "name": "B1 R to O",
+          "geometry": "M1408 556q-56 40-96 66m7.4-11.9l-7.4 11.9 13.9-1.9",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#F85149",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "zhR9d",
+          "x": 0,
+          "y": 0,
+          "name": "B2 O to judgment",
+          "geometry": "M1332 668q48 32 114 64m-14-0.1l14 0.1-8.8-10.9",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#F85149",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "nrG7j",
+          "x": 0,
+          "y": 0,
+          "name": "B3 judgment to egress",
+          "geometry": "M1596 758q146-156 158-328m5.1 13l-5.1-13-6.8 12.2",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#F85149",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "ot76l",
+          "x": 0,
+          "y": 0,
+          "name": "B4 egress back to R",
+          "geometry": "M1838 400q-90-74-230-28m10.2-9.6l-10.2 9.6 13.9 1.7",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#F85149",
+          "strokeWidth": 2.5,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "KXUYP",
+          "x": 0,
+          "y": 0,
+          "name": "R holds Self tether",
+          "geometry": "M1386 428q-166-40-310-68",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#F8514999",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "ucXAS",
+          "x": 0,
+          "y": 0,
+          "name": "Judgment D link",
+          "geometry": "M1404 786q-144 54-286 76m18-10l-18 10 22 10",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#F8514999",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "pyRe2",
+          "x": 0,
+          "y": 0,
+          "name": "Soul Spine",
+          "geometry": "M1000 428l0 364",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#E3B34166",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "text",
+          "id": "GfJbn",
+          "x": 1128,
+          "y": 380,
+          "name": "Tether Label",
+          "fill": "#F85149BB",
+          "content": "holds the Self’s working state — hot",
+          "fontFamily": "Inter",
+          "fontSize": 10.5,
+          "fontWeight": "normal",
+          "fontStyle": "italic"
+        },
+        {
+          "type": "text",
+          "id": "x6qVzq",
+          "x": 1196,
+          "y": 806,
+          "name": "D Link Label",
+          "fill": "#F85149BB",
+          "content": "reads · writes engrams",
+          "fontFamily": "Inter",
+          "fontSize": 10.5,
+          "fontWeight": "normal",
+          "fontStyle": "italic"
+        },
+        {
+          "type": "frame",
+          "id": "K8wrg",
+          "x": 562,
+          "y": 360,
+          "name": "Step A1",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "APFkt",
+              "name": "Step A1 N",
+              "fill": "#58A6FF",
+              "content": "1",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "P0Y1M",
+          "x": 798,
+          "y": 448,
+          "name": "Step A2",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "HmF1Z",
+              "name": "Step A2 N",
+              "fill": "#58A6FF",
+              "content": "2",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "IuyrQ",
+          "x": 740,
+          "y": 704,
+          "name": "Step A3",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "buraI",
+              "name": "Step A3 N",
+              "fill": "#58A6FF",
+              "content": "3",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "A8bVbV",
+          "x": 688,
+          "y": 858,
+          "name": "Step A4",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Yt4q0",
+              "name": "Step A4 N",
+              "fill": "#58A6FF",
+              "content": "4",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "stLe8",
+          "x": 462,
+          "y": 688,
+          "name": "Step A5",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "e5ju87",
+              "name": "Step A5 N",
+              "fill": "#58A6FF",
+              "content": "5",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "wbnZH",
+          "x": 442,
+          "y": 530,
+          "name": "Step A6",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "EKgZF",
+              "name": "Step A6 N",
+              "fill": "#58A6FF",
+              "content": "6",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "R46VG",
+          "x": 612,
+          "y": 756,
+          "name": "Step A7",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "JoEK6",
+              "name": "Step A7 N",
+              "fill": "#58A6FF",
+              "content": "7",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "j45V6",
+          "x": 1418,
+          "y": 858,
+          "name": "Step A8",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#58A6FF",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "r588kf",
+              "name": "Step A8 N",
+              "fill": "#58A6FF",
+              "content": "8",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LfU6R",
+          "x": 1342,
+          "y": 580,
+          "name": "Step B1",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#F85149",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "hvm9N",
+              "name": "Step B1 N",
+              "fill": "#F85149",
+              "content": "1",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "k40ny",
+          "x": 1372,
+          "y": 678,
+          "name": "Step B2",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#F85149",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "VA8nI",
+              "name": "Step B2 N",
+              "fill": "#F85149",
+              "content": "2",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "IkIxT",
+          "x": 1698,
+          "y": 586,
+          "name": "Step B3",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#F85149",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "WSx6D",
+              "name": "Step B3 N",
+              "fill": "#F85149",
+              "content": "3",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "D2XUOR",
+          "x": 1722,
+          "y": 344,
+          "name": "Step B4",
+          "width": 26,
+          "height": 26,
+          "fill": "#0D1117",
+          "cornerRadius": 13,
+          "stroke": "#F85149",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "x0n9dI",
+              "name": "Step B4 N",
+              "fill": "#F85149",
+              "content": "4",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cqo2B",
+          "x": 1012,
+          "y": 528,
+          "name": "Soul Annotation",
+          "width": 236,
+          "layout": "vertical",
+          "gap": 2,
+          "children": [
+            {
+              "type": "text",
+              "id": "k9efk",
+              "name": "Soul Title",
+              "fill": "#E3B341",
+              "content": "THE SOUL",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "W1ln7E",
+              "name": "Soul Text",
+              "fill": "#C9D1D9",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "both loops cross here — the one Self, the one memory. What makes the reactive mind and the autonomous mind ONE being, not two.",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "ellipse",
+          "id": "GDdke",
+          "x": 1500,
+          "y": 470,
+          "name": "V Glow",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#E3B34118",
+                "position": 0
+              },
+              {
+                "color": "#F851490D",
+                "position": 0.55
+              },
+              {
+                "color": "#F8514900",
+                "position": 1
+              }
+            ]
+          },
+          "width": 360,
+          "height": 320
+        },
+        {
+          "type": "frame",
+          "id": "HH6Wk",
+          "x": 1640,
+          "y": 468,
+          "name": "V Label",
+          "width": 180,
+          "layout": "vertical",
+          "gap": 2,
+          "children": [
+            {
+              "type": "text",
+              "id": "e7qBs4",
+              "name": "V Title",
+              "fill": "#E3B341",
+              "content": "V — THE VOICE",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 15,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "UpFOB",
+              "name": "V Text",
+              "fill": "#C9D1D9",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "emerges here: V = R + O + E. Not a module — “a person just speaks.”",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "CZbhT",
+          "x": 70,
+          "y": 1108,
+          "name": "Legend",
+          "width": 1860,
+          "fill": "#11161D",
+          "cornerRadius": 14,
+          "stroke": "#21262D",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            16,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "TOtK7",
+              "name": "Legend Letters",
+              "gap": 22,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sZCWb",
+                  "name": "Key 1",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "IA3mQ",
+                      "name": "Key Dot 1",
+                      "fill": "#E3B341",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "O56Fw",
+                      "name": "Key Letter 1",
+                      "fill": "#E3B341",
+                      "content": "1",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "E8cshT",
+                      "name": "Key Word 1",
+                      "fill": "#8B949E",
+                      "content": "Self — singular",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "A9BJ2Q",
+                  "name": "Key N",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "tKEMH",
+                      "name": "Key Dot N",
+                      "fill": "#26A69A",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "Cdvzv",
+                      "name": "Key Letter N",
+                      "fill": "#26A69A",
+                      "content": "N",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "kedAD",
+                      "name": "Key Word N",
+                      "fill": "#8B949E",
+                      "content": "functions",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ubhfo",
+                  "name": "Key L",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "JlDpl",
+                      "name": "Key Dot L",
+                      "fill": "#A371F7",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "z8B909",
+                      "name": "Key Letter L",
+                      "fill": "#A371F7",
+                      "content": "L",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "u0IGsB",
+                      "name": "Key Word L",
+                      "fill": "#8B949E",
+                      "content": "LLMs",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "itRyB",
+                  "name": "Key T",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "j7Ei04",
+                      "name": "Key Dot T",
+                      "fill": "#F0883E",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "g0pAHm",
+                      "name": "Key Letter T",
+                      "fill": "#F0883E",
+                      "content": "T",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "l6uMZ",
+                      "name": "Key Word T",
+                      "fill": "#8B949E",
+                      "content": "tools",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "k5OKrt",
+                  "name": "Key S",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "lWZuC",
+                      "name": "Key Dot S",
+                      "fill": "#DB61A2",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "WnB5p",
+                      "name": "Key Letter S",
+                      "fill": "#DB61A2",
+                      "content": "S",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WuxKz",
+                      "name": "Key Word S",
+                      "fill": "#8B949E",
+                      "content": "skills",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "W7cAl2",
+                  "name": "Key M",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "I3EXJh",
+                      "name": "Key Dot M",
+                      "fill": "#4DD0E1",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "YAPTE",
+                      "name": "Key Letter M",
+                      "fill": "#4DD0E1",
+                      "content": "M",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "TNidE",
+                      "name": "Key Word M",
+                      "fill": "#8B949E",
+                      "content": "MCP servers",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "w8uzu",
+                  "name": "Key K",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "OWiEP",
+                      "name": "Key Dot K",
+                      "fill": "#57AB5A",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "T2v5h",
+                      "name": "Key Letter K",
+                      "fill": "#57AB5A",
+                      "content": "K",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WriBi",
+                      "name": "Key Word K",
+                      "fill": "#8B949E",
+                      "content": "knowledge",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "S7P8N",
+                  "name": "Key D",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "s1uvuS",
+                      "name": "Key Dot D",
+                      "fill": "#6E7FF3",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "zY541",
+                      "name": "Key Letter D",
+                      "fill": "#6E7FF3",
+                      "content": "D",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zGNzH",
+                      "name": "Key Word D",
+                      "fill": "#8B949E",
+                      "content": "memory + schema",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mTMST",
+                  "name": "Key O",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "T5MZE",
+                      "name": "Key Dot O",
+                      "fill": "#9BA7B4",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "s9sREr",
+                      "name": "Key Letter O",
+                      "fill": "#9BA7B4",
+                      "content": "O",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "krIGL",
+                      "name": "Key Word O",
+                      "fill": "#8B949E",
+                      "content": "operations",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hEy4b",
+                  "name": "Key E",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "fdhEL",
+                      "name": "Key Dot E",
+                      "fill": "#C9D1D9",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "cHIF3",
+                      "name": "Key Letter E",
+                      "fill": "#C9D1D9",
+                      "content": "E",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "keirA",
+                      "name": "Key Word E",
+                      "fill": "#8B949E",
+                      "content": "membrane",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GMt0a",
+                  "name": "Key R",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "omoa2",
+                      "name": "Key Dot R",
+                      "fill": "#F85149",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "NNd9K",
+                      "name": "Key Letter R",
+                      "fill": "#F85149",
+                      "content": "R",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hdmM9",
+                      "name": "Key Word R",
+                      "fill": "#8B949E",
+                      "content": "the Hum",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XTpb1",
+                  "name": "Key V",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "L9A9k5",
+                      "name": "Key Dot V",
+                      "fill": "#E3B341",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "UWUSG",
+                      "name": "Key Letter V",
+                      "fill": "#E3B341",
+                      "content": "V",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rxBRR",
+                      "name": "Key Word V",
+                      "fill": "#8B949E",
+                      "content": "voice = R+O+E",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "LvFmM",
+              "name": "Legend Loops",
+              "gap": 28,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "c8XQw1",
+                  "name": "Key Loop A",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "UvqYB",
+                      "name": "Key A Line",
+                      "fill": "#58A6FF",
+                      "width": 34,
+                      "height": 3
+                    },
+                    {
+                      "type": "text",
+                      "id": "Okn4G",
+                      "name": "Key A Text",
+                      "fill": "#8B949E",
+                      "content": "Loop A — reactive: E→1→O→D+K→L→O→T/S/M→D-write→E. Exists today (cold).",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SfCCq",
+                  "name": "Key Loop B",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "HiCdH",
+                      "name": "Key B Line",
+                      "fill": "#F85149",
+                      "width": 34,
+                      "height": 3
+                    },
+                    {
+                      "type": "text",
+                      "id": "GJ8GU",
+                      "name": "Key B Text",
+                      "fill": "#8B949E",
+                      "content": "Loop B — autonomous / the Hum: R→O→judgment→E-egress→R. Does not exist yet.",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "P6hjs",
+                  "name": "Key Read Order",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AncwC",
+                      "name": "Read Order",
+                      "fill": "#8B949E",
+                      "content": "Read order: one SELF · a PURPOSE · RESOURCES · LOGIC · MEMBRANE · HEART · the emergent VOICE.",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "H03FrX",
+      "x": 2200,
+      "y": 0,
+      "name": "Diagram 2 — Anatomy of the Resident Mind",
+      "clip": true,
+      "width": 2000,
+      "height": 1300,
+      "fill": "#0D1117",
+      "cornerRadius": 24,
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "MBdt9",
+          "x": 70,
+          "y": 44,
+          "name": "Title Block 2",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "xF864",
+              "name": "Kicker 2",
+              "fill": "#8B949E",
+              "content": "AGORA · RATIFIED ANATOMY · 2026-06-21 · DIAGRAM 2 OF 2",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "Agvcu",
+              "name": "Title 2",
+              "fill": "#E6EDF3",
+              "content": "Anatomy of the Resident Mind",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 38,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "SttBz",
+              "name": "Subtitle 2",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": 1080,
+              "content": "Component architecture. One singular Self; every other organ plural and pluggable. Read order: one SELF · a PURPOSE · RESOURCES · LOGIC · MEMBRANE · HEART · the emergent VOICE. Spine = the formula · Heart = R · Soul = the affective texture carried in D.",
+              "lineHeight": 1.5,
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 48,
+          "id": "OTP58",
+          "x": 140,
+          "y": 190,
+          "name": "E Membrane Outer 2",
+          "fill": "#0D111700",
+          "width": 1480,
+          "height": 880,
+          "stroke": "#C9D1D9",
+          "strokeWidth": 2.5
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 40,
+          "id": "OvzuO",
+          "x": 152,
+          "y": 202,
+          "name": "E Membrane Inner 2",
+          "fill": "#11161D",
+          "width": 1456,
+          "height": 856,
+          "stroke": "#C9D1D966",
+          "strokeWidth": 1
+        },
+        {
+          "type": "frame",
+          "id": "WUy4A",
+          "x": 700,
+          "y": 176,
+          "name": "E Label 2",
+          "fill": "#0D1117",
+          "gap": 10,
+          "padding": [
+            6,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "zyRuc",
+              "name": "E Icon 2",
+              "width": 18,
+              "height": 18,
+              "icon": "circle-dashed",
+              "library": "lucide",
+              "fill": "#C9D1D9"
+            },
+            {
+              "type": "text",
+              "id": "oGHjs",
+              "name": "E Tag 2",
+              "fill": "#E6EDF3",
+              "content": "E — THE MEMBRANE",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "pFK5E",
+              "name": "E Sub 2",
+              "fill": "#8B949E",
+              "content": "bidirectional boundary",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "VeqCH",
+          "x": 58,
+          "y": 300,
+          "name": "Port2 REST",
+          "width": 176,
+          "height": 42,
+          "fill": "#0D1117",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D9AA",
+          "strokeWidth": 1.5,
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Sewdl",
+              "name": "Port2 REST Text",
+              "fill": "#C9D1D9",
+              "content": "REST  /run",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Z2emI",
+          "x": 58,
+          "y": 352,
+          "name": "Port2 Listeners",
+          "width": 176,
+          "height": 42,
+          "fill": "#0D111766",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D944",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "vS5C5",
+              "name": "Port2 Listeners Text",
+              "fill": "#8B949E",
+              "content": "listeners",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "AcluV",
+          "x": 58,
+          "y": 404,
+          "name": "Port2 Cron",
+          "width": 176,
+          "height": 42,
+          "fill": "#0D111766",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D944",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "ZNz6V",
+              "name": "Port2 Cron Text",
+              "fill": "#8B949E",
+              "content": "cron adapters",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LxMeY",
+          "x": 30,
+          "y": 456,
+          "name": "Ingress Caption 2",
+          "width": 232,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "k3Mjt",
+              "name": "Ingress Caption 2 Text",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "INGRESS — today: one one-way REST door",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vNDik",
+          "x": 40,
+          "y": 228,
+          "name": "Web Client Chip",
+          "width": 212,
+          "fill": "#161B22",
+          "cornerRadius": 10,
+          "stroke": "#8B949E",
+          "strokeWidth": 1.5,
+          "gap": 8,
+          "padding": [
+            8,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "kgoUj",
+              "name": "Web Icon",
+              "width": 15,
+              "height": 15,
+              "icon": "monitor",
+              "library": "lucide",
+              "fill": "#8B949E"
+            },
+            {
+              "type": "text",
+              "id": "HSSbM",
+              "name": "Web Text",
+              "fill": "#C9D1D9",
+              "content": "web/ UI — client",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "E2b1q",
+          "x": 1518,
+          "y": 474,
+          "name": "Port2 Egress",
+          "width": 204,
+          "height": 42,
+          "fill": "#0D111766",
+          "cornerRadius": 9,
+          "stroke": "#C9D1D944",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "tcACW",
+              "name": "Port2 Egress Text",
+              "fill": "#8B949E",
+              "content": "output writers",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xCfz6",
+          "x": 1498,
+          "y": 524,
+          "name": "Egress Caption 2",
+          "width": 244,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "u9h2g",
+              "name": "Egress Caption 2 Text",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "EGRESS — absent today: the mind cannot knock (main.go:37-38)",
+              "lineHeight": 1.4,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "t1ERL",
+          "x": 1800,
+          "y": 190,
+          "name": "Seam Band",
+          "width": 16,
+          "height": 880,
+          "layout": "vertical",
+          "gap": 14,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "FWrJZ",
+              "name": "Seam Dash 0",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "T76e3",
+              "name": "Seam Dash 1",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "t1R3UT",
+              "name": "Seam Dash 2",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "W4OYZ",
+              "name": "Seam Dash 3",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "qifmV",
+              "name": "Seam Dash 4",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "QV7uX",
+              "name": "Seam Dash 5",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "wiXZa",
+              "name": "Seam Dash 6",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "dXRg0",
+              "name": "Seam Dash 7",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "W1n2Fj",
+              "name": "Seam Dash 8",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "QUXky",
+              "name": "Seam Dash 9",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "TALpF",
+              "name": "Seam Dash 10",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "DdsY5",
+              "name": "Seam Dash 11",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "YivdE",
+              "name": "Seam Dash 12",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "zzyPG",
+              "name": "Seam Dash 13",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "D4Uen",
+              "name": "Seam Dash 14",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "bTnpH",
+              "name": "Seam Dash 15",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "R6AFC",
+              "name": "Seam Dash 16",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "ULhoJ",
+              "name": "Seam Dash 17",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "yGYwq",
+              "name": "Seam Dash 18",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "eNww2",
+              "name": "Seam Dash 19",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "g3wsE3",
+              "name": "Seam Dash 20",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "H3y5Lk",
+              "name": "Seam Dash 21",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "r6vl1j",
+              "name": "Seam Dash 22",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "qMVUj",
+              "name": "Seam Dash 23",
+              "fill": "#8B949E88",
+              "width": 4,
+              "height": 22
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "E0nGO",
+          "x": 1652,
+          "y": 96,
+          "name": "Seam Label",
+          "width": 330,
+          "layout": "vertical",
+          "gap": 2,
+          "children": [
+            {
+              "type": "text",
+              "id": "aWUOP",
+              "name": "Seam Title",
+              "fill": "#E6EDF3",
+              "content": "THE SEAM — Agora ↔ Castra",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "LcFpY",
+              "name": "Seam Text",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Agora builds the single-mind UNIT. Castra governs the SOCIETY of minds. Compose at the seam, never overlap — minds dock into Castra later.",
+              "lineHeight": 1.45,
+              "fontFamily": "Inter",
+              "fontSize": 11.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "HlfpJ",
+          "x": 1836,
+          "y": 598,
+          "name": "Castra Chip",
+          "width": 150,
+          "fill": "#161B2266",
+          "cornerRadius": 10,
+          "stroke": "#8B949E66",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "gap": 2,
+          "padding": [
+            10,
+            14
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "kPTOV",
+              "name": "Castra Name",
+              "fill": "#C9D1D9",
+              "content": "CASTRA",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "N6IndQ",
+              "name": "Castra Sub",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "society · governance (external)",
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "qtm9x",
+          "x": 0,
+          "y": 0,
+          "name": "Dock Arrow",
+          "geometry": "M1625 630l169 0m-14-10l14 10-14 10",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#8B949E88",
+          "strokeWidth": 1.8,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "text",
+          "id": "Aj90C",
+          "x": 1652,
+          "y": 606,
+          "name": "Dock Label",
+          "fill": "#8B949E",
+          "content": "docks into →",
+          "fontFamily": "Inter",
+          "fontSize": 10.5,
+          "fontWeight": "normal",
+          "fontStyle": "italic"
+        },
+        {
+          "type": "ellipse",
+          "id": "eeorY",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 0",
+          "innerRadius": 0.94,
+          "startAngle": 5,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "LmNyh",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 1",
+          "innerRadius": 0.94,
+          "startAngle": 41,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "l0X6lc",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 2",
+          "innerRadius": 0.94,
+          "startAngle": 77,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "D2Hyv",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 3",
+          "innerRadius": 0.94,
+          "startAngle": 113,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "yO4hB",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 4",
+          "innerRadius": 0.94,
+          "startAngle": 149,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "bfgqj",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 5",
+          "innerRadius": 0.94,
+          "startAngle": 185,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "lEpsv",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 6",
+          "innerRadius": 0.94,
+          "startAngle": 221,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "IqUSe",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 7",
+          "innerRadius": 0.94,
+          "startAngle": 257,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "uHb5n",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 8",
+          "innerRadius": 0.94,
+          "startAngle": 293,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "ellipse",
+          "id": "XBP1o",
+          "x": 675,
+          "y": 405,
+          "name": "R Arc 9",
+          "innerRadius": 0.94,
+          "startAngle": 329,
+          "sweepAngle": 26,
+          "fill": "#F85149AA",
+          "width": 310,
+          "height": 310
+        },
+        {
+          "type": "frame",
+          "id": "i3xNh",
+          "x": 998,
+          "y": 370,
+          "name": "R Label 2",
+          "gap": 8,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "ZwTE9",
+              "name": "R Letter 2",
+              "fill": "#F85149",
+              "content": "R",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "g4Swu",
+              "name": "R Word 2",
+              "fill": "#E6EDF3",
+              "content": "THE HUM · HEART",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11.5,
+              "fontWeight": "normal",
+              "letterSpacing": 1.5
+            },
+            {
+              "type": "text",
+              "id": "k3xDU",
+              "name": "R Tag 2",
+              "fill": "#8B949E",
+              "content": "◌ TARGET",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KQq1k",
+          "x": 998,
+          "y": 398,
+          "name": "R Note 2",
+          "width": 182,
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "text",
+              "id": "t6FaKa",
+              "name": "R Note 2 Text",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "always-on loop bound to the Self — not cron. Today every goroutine is join-bounded (parallel.go:41→56).",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "ellipse",
+          "id": "Rg7WZ",
+          "x": 745,
+          "y": 475,
+          "name": "Self Circle 2",
+          "fill": "#16141A",
+          "width": 170,
+          "height": 170,
+          "stroke": "#E3B341AA",
+          "strokeWidth": 3
+        },
+        {
+          "type": "frame",
+          "id": "w3750",
+          "x": 745,
+          "y": 475,
+          "name": "Self Content 2",
+          "width": 170,
+          "height": 170,
+          "layout": "vertical",
+          "gap": 2,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "hq7eZ",
+              "name": "Self Digit 2",
+              "fill": "#E3B341",
+              "content": "1",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 50,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "q7Q061",
+              "name": "Self Word 2",
+              "fill": "#E6EDF3",
+              "content": "SELF · IDENTITY",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "hmINJ",
+              "name": "Self Tag 2",
+              "fill": "#8B949E",
+              "content": "◌ TARGET",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "R5iFDz",
+          "x": 610,
+          "y": 730,
+          "name": "Self Caption 2",
+          "width": 440,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "tVTeM",
+              "name": "Self Caption 2 Text",
+              "fill": "#E3B341CC",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "the only singular element — absent today: no Self struct, no identity key (state.go:15-31)",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "s6a4M",
+          "x": 660,
+          "y": 778,
+          "name": "O Block 2",
+          "width": 340,
+          "fill": "#161B22",
+          "cornerRadius": 14,
+          "stroke": "#9BA7B4",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 3,
+          "padding": [
+            12,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "y7JQW",
+              "name": "O Head 2",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "bKzpD",
+                  "name": "O Icon 2",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "settings",
+                  "library": "lucide",
+                  "fill": "#9BA7B4"
+                },
+                {
+                  "type": "text",
+                  "id": "oVKaX",
+                  "name": "O Letter 2",
+                  "fill": "#9BA7B4",
+                  "content": "O",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "W7VzAG",
+                  "name": "O Word 2",
+                  "fill": "#E6EDF3",
+                  "content": "OPERATIONS · LOGIC",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "j7wUT",
+                  "name": "O Tag 2",
+                  "fill": "#3FB950",
+                  "content": "● TODAY",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "jBlMq",
+              "name": "O Note 2",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "graph engine — nav ladder agora.go:230-255 · ConditionalEdges · nodes/: agent | parallel | subgraph | tools",
+              "lineHeight": 1.5,
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "zN3A4",
+              "name": "O Verdict 2",
+              "fill": "#8B949E",
+              "content": "conditionality + transformation, fused — the best-developed organ",
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "pnv8I",
+          "x": 340,
+          "y": 224,
+          "name": "N Row",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "c5ncIW",
+              "name": "N Icon 2",
+              "width": 16,
+              "height": 16,
+              "icon": "target",
+              "library": "lucide",
+              "fill": "#26A69A"
+            },
+            {
+              "type": "text",
+              "id": "vZy7S",
+              "name": "N Letter 2",
+              "fill": "#26A69A",
+              "content": "N",
+              "fontFamily": "Space Grotesk",
+              "fontSize": 17,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "s7zeOZ",
+              "name": "N Word 2",
+              "fill": "#E6EDF3",
+              "content": "PURPOSE — OUTWARD SERVICES",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "jHg7I",
+              "name": "N Chip run",
+              "fill": "#161B22",
+              "cornerRadius": 8,
+              "stroke": "#26A69A",
+              "strokeWidth": 1.5,
+              "padding": [
+                5,
+                12
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "xEVem",
+                  "name": "N Chip run Text",
+                  "fill": "#C9D1D9",
+                  "content": "POST /run",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "itgsf",
+              "name": "N Chip history",
+              "fill": "#161B22",
+              "cornerRadius": 8,
+              "stroke": "#26A69A",
+              "strokeWidth": 1.5,
+              "padding": [
+                5,
+                12
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Ib3JU",
+                  "name": "N Chip history Text",
+                  "fill": "#C9D1D9",
+                  "content": "GET /history",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gRps0",
+              "name": "N Chip target",
+              "fill": "#161B2266",
+              "cornerRadius": 8,
+              "stroke": "#26A69A55",
+              "strokeWidth": 1.5,
+              "padding": [
+                5,
+                12
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OaJCP",
+                  "name": "N Chip target Text",
+                  "fill": "#8B949E",
+                  "content": "declarable service bank +",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "iGFZw",
+          "x": 340,
+          "y": 262,
+          "name": "N Verdict",
+          "fill": "#8B949E",
+          "content": "today: two hardcoded routes (main.go:37-38) — vestigial, not declarable, not owned by a Self",
+          "fontFamily": "Inter",
+          "fontSize": 10.5,
+          "fontWeight": "normal",
+          "fontStyle": "italic"
+        },
+        {
+          "type": "frame",
+          "id": "t70zB5",
+          "x": 190,
+          "y": 300,
+          "name": "L Bank",
+          "width": 300,
+          "fill": "#161B22",
+          "cornerRadius": 14,
+          "stroke": "#A371F7",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 7,
+          "padding": [
+            12,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "uV2yZ",
+              "name": "L Bank Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "yWOD8",
+                  "name": "L Bank Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "cpu",
+                  "library": "lucide",
+                  "fill": "#A371F7"
+                },
+                {
+                  "type": "text",
+                  "id": "EdPI2",
+                  "name": "L Bank Letter",
+                  "fill": "#A371F7",
+                  "content": "L",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "CaBQt",
+                  "name": "L Bank Word",
+                  "fill": "#E6EDF3",
+                  "content": "LLM COMPUTE",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "sY0dH",
+                  "name": "L Bank Tag",
+                  "fill": "#D29922",
+                  "content": "◐ PARTIAL",
+                  "fontFamily": "Inter",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "t3fWOu",
+              "name": "L Slot ollama",
+              "width": "fill_container",
+              "fill": "#0D1117",
+              "cornerRadius": 8,
+              "stroke": "#A371F788",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "b99UU",
+                  "name": "L Slot ollama Text",
+                  "fill": "#C9D1D9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "ollama — llm/ollama.go",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "S56Ur",
+              "name": "L Slot openai",
+              "width": "fill_container",
+              "fill": "#0D1117",
+              "cornerRadius": 8,
+              "stroke": "#A371F788",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "J6csN",
+                  "name": "L Slot openai Text",
+                  "fill": "#C9D1D9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "openai — llm/openai.go",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "c4tDte",
+              "name": "L Slot google",
+              "width": "fill_container",
+              "fill": "#0D1117",
+              "cornerRadius": 8,
+              "stroke": "#A371F788",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jSdba",
+                  "name": "L Slot google Text",
+                  "fill": "#C9D1D9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "google — stub (llm/google.go:28)",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "pjaa5",
+              "name": "L Slot plus",
+              "width": "fill_container",
+              "fill": "#0D111744",
+              "cornerRadius": 8,
+              "stroke": "#A371F733",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Zny9y",
+                  "name": "L Slot plus Text",
+                  "fill": "#8B949E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "+ swap in",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "FmDSP",
+              "name": "L Note",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "clean seam (llm.LLM, interface.go:11-13) — but singular in use: handler.go:71 hardcodes Ollama",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kPguS",
+          "x": 190,
+          "y": 566,
+          "name": "T Bank",
+          "width": 300,
+          "fill": "#161B22",
+          "cornerRadius": 14,
+          "stroke": "#F0883E",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 7,
+          "padding": [
+            12,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "U8mmUp",
+              "name": "T Bank Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "A8bDT",
+                  "name": "T Bank Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wrench",
+                  "library": "lucide",
+                  "fill": "#F0883E"
+                },
+                {
+                  "type": "text",
+                  "id": "Vizxv",
+                  "name": "T Bank Letter",
+                  "fill": "#F0883E",
+                  "content": "T",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "QTmJx",
+                  "name": "T Bank Word",
+                  "fill": "#E6EDF3",
+                  "content": "TOOLS",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "E0QZF",
+                  "name": "T Bank Tag",
+                  "fill": "#D29922",
+                  "content": "◐ PARTIAL / BROKEN",
+                  "fontFamily": "Inter",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JrKzs",
+              "name": "T Slot registry",
+              "width": "fill_container",
+              "fill": "#0D1117",
+              "cornerRadius": 8,
+              "stroke": "#F0883E88",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "HLiwL",
+                  "name": "T Slot registry Text",
+                  "fill": "#C9D1D9",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "ToolRegistry — tools.go:11-50",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "g6bqN6",
+              "name": "T Slot plus",
+              "width": "fill_container",
+              "fill": "#0D111744",
+              "cornerRadius": 8,
+              "stroke": "#F0883E33",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eW42P",
+                  "name": "T Slot plus Text",
+                  "fill": "#8B949E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "+ plug in",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "L0LRI",
+              "name": "T Note",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "casts die across DeepCopy (nodes/tools.go:79) · compiler silently drops tool nodes (generator.go:270)",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tiMj5",
+          "x": 190,
+          "y": 790,
+          "name": "S Bank",
+          "width": 300,
+          "fill": "#161B2266",
+          "cornerRadius": 14,
+          "stroke": "#DB61A255",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 7,
+          "padding": [
+            12,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "MjTXr",
+              "name": "S Bank Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "OvvGY",
+                  "name": "S Bank Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "graduation-cap",
+                  "library": "lucide",
+                  "fill": "#DB61A2"
+                },
+                {
+                  "type": "text",
+                  "id": "wJYK9",
+                  "name": "S Bank Letter",
+                  "fill": "#DB61A2",
+                  "content": "S",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "yhlGq",
+                  "name": "S Bank Word",
+                  "fill": "#E6EDF3",
+                  "content": "SKILLS",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "Vu6ct",
+                  "name": "S Bank Tag",
+                  "fill": "#8B949E",
+                  "content": "◌ TARGET",
+                  "fontFamily": "Inter",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KMJbi",
+              "name": "S Slot 1",
+              "width": "fill_container",
+              "fill": "#0D111744",
+              "cornerRadius": 8,
+              "stroke": "#DB61A233",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sWovz",
+                  "name": "S Slot 1 Text",
+                  "fill": "#8B949E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "learned procedure +",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JReAY",
+              "name": "S Slot 2",
+              "width": "fill_container",
+              "fill": "#0D111744",
+              "cornerRadius": 8,
+              "stroke": "#DB61A233",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vD2Sy",
+                  "name": "S Slot 2 Text",
+                  "fill": "#8B949E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "learned procedure +",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "nn0JH",
+              "name": "S Note",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "absent — specified at length (DOC-03), zero implementation",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "g4srK",
+          "x": 1210,
+          "y": 300,
+          "name": "M Bank",
+          "width": 290,
+          "fill": "#161B2266",
+          "cornerRadius": 14,
+          "stroke": "#4DD0E155",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 7,
+          "padding": [
+            12,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "svgMi",
+              "name": "M Bank Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "IFiJV",
+                  "name": "M Bank Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "plug",
+                  "library": "lucide",
+                  "fill": "#4DD0E1"
+                },
+                {
+                  "type": "text",
+                  "id": "EzVzK",
+                  "name": "M Bank Letter",
+                  "fill": "#4DD0E1",
+                  "content": "M",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "pNXqJ",
+                  "name": "M Bank Word",
+                  "fill": "#E6EDF3",
+                  "content": "MCP SERVERS",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "yy4Vu",
+                  "name": "M Bank Tag",
+                  "fill": "#8B949E",
+                  "content": "◌ TARGET",
+                  "fontFamily": "Inter",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dQxSu",
+              "name": "M Slot 1",
+              "width": "fill_container",
+              "fill": "#0D111744",
+              "cornerRadius": 8,
+              "stroke": "#4DD0E133",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JxjMQ",
+                  "name": "M Slot 1 Text",
+                  "fill": "#8B949E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "mcp server +",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ncBwa",
+              "name": "M Slot 2",
+              "width": "fill_container",
+              "fill": "#0D111744",
+              "cornerRadius": 8,
+              "stroke": "#4DD0E133",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mA6QT",
+                  "name": "M Slot 2 Text",
+                  "fill": "#8B949E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "mcp server +",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "R4rvZx",
+              "name": "M Note",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "absent — no mention anywhere in the tree",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XRH9o",
+          "x": 1210,
+          "y": 530,
+          "name": "K Bank",
+          "width": 290,
+          "fill": "#161B2266",
+          "cornerRadius": 14,
+          "stroke": "#57AB5A55",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 7,
+          "padding": [
+            12,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "idwG2",
+              "name": "K Bank Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "o0YeU",
+                  "name": "K Bank Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "book-open",
+                  "library": "lucide",
+                  "fill": "#57AB5A"
+                },
+                {
+                  "type": "text",
+                  "id": "WOvxV",
+                  "name": "K Bank Letter",
+                  "fill": "#57AB5A",
+                  "content": "K",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "sM7PX",
+                  "name": "K Bank Word",
+                  "fill": "#E6EDF3",
+                  "content": "KNOWLEDGE",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "z2Zfd",
+                  "name": "K Bank Tag",
+                  "fill": "#8B949E",
+                  "content": "◌ TARGET",
+                  "fontFamily": "Inter",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Dv5CD",
+              "name": "K Slot 1",
+              "width": "fill_container",
+              "fill": "#0D111744",
+              "cornerRadius": 8,
+              "stroke": "#57AB5A33",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TrKiD",
+                  "name": "K Slot 1 Text",
+                  "fill": "#8B949E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "knowledge source +",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xvrU2",
+              "name": "K Slot 2",
+              "width": "fill_container",
+              "fill": "#0D111744",
+              "cornerRadius": 8,
+              "stroke": "#57AB5A33",
+              "strokeWidth": 1.2,
+              "padding": [
+                6,
+                10
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jPerF",
+                  "name": "K Slot 2 Text",
+                  "fill": "#8B949E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "knowledge source +",
+                  "lineHeight": 1.4,
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "MVFwW",
+              "name": "K Note",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "absent — no retrieval, no reference store, no knowledge distinct from transcript",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "V6xwS",
+          "x": 560,
+          "y": 896,
+          "name": "D Bank",
+          "width": 640,
+          "fill": "#161B22",
+          "cornerRadius": 14,
+          "stroke": "#6E7FF3",
+          "strokeWidth": 2,
+          "layout": "vertical",
+          "gap": 7,
+          "padding": [
+            12,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "sQvWk",
+              "name": "D Bank Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "CKUdx",
+                  "name": "D Bank Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "database",
+                  "library": "lucide",
+                  "fill": "#6E7FF3"
+                },
+                {
+                  "type": "text",
+                  "id": "ccECq",
+                  "name": "D Bank Letter",
+                  "fill": "#6E7FF3",
+                  "content": "D",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "R1ewSV",
+                  "name": "D Bank Word",
+                  "fill": "#E6EDF3",
+                  "content": "MEMORY",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.5
+                },
+                {
+                  "type": "text",
+                  "id": "vjnKs",
+                  "name": "D Bank Tag",
+                  "fill": "#D29922",
+                  "content": "△ WRONG SHAPE today",
+                  "fontFamily": "Inter",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "cWLwJ",
+              "name": "D Slots Row",
+              "width": "fill_container",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "XCEy6",
+                  "name": "D Slot sqlite",
+                  "width": "fill_container",
+                  "fill": "#0D1117",
+                  "cornerRadius": 8,
+                  "stroke": "#6E7FF388",
+                  "strokeWidth": 1.2,
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": [
+                    8,
+                    10
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "RigII",
+                      "name": "D Slot sqlite Tag",
+                      "fill": "#3FB950",
+                      "content": "● TODAY",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "sfscv",
+                      "name": "D Slot sqlite Text",
+                      "fill": "#C9D1D9",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "sqlite — executions + messages, run-keyed (sqlite.go:46-70). A transcript archive: write-only into cognition, no read path back into a running mind.",
+                      "lineHeight": 1.4,
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10.5,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z1Dh4",
+                  "name": "D Slot engrams",
+                  "width": "fill_container",
+                  "fill": "#0D111744",
+                  "cornerRadius": 8,
+                  "stroke": "#6E7FF333",
+                  "strokeWidth": 1.2,
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": [
+                    8,
+                    10
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "w60HC",
+                      "name": "D Slot engrams Tag",
+                      "fill": "#A5B4FC",
+                      "content": "◌ TARGET — affective-relational schema",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "vm9QC",
+                      "name": "D Slot engrams Text",
+                      "fill": "#8B949E",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "self-keyed engrams — affective_coefficient + relational_anchor written at formation. “if it isn’t in the schema, it isn’t in the soul”",
+                      "lineHeight": 1.4,
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10.5,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZfvTJ",
+          "x": 190,
+          "y": 966,
+          "name": "Compiler Chip",
+          "width": 330,
+          "fill": "#161B22",
+          "cornerRadius": 10,
+          "stroke": "#8B949E",
+          "strokeWidth": 1.5,
+          "layout": "vertical",
+          "gap": 3,
+          "padding": [
+            10,
+            14
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "p100a",
+              "name": "Compiler Head",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "FscFW",
+                  "name": "Compiler Icon",
+                  "width": 15,
+                  "height": 15,
+                  "icon": "file-cog",
+                  "library": "lucide",
+                  "fill": "#8B949E"
+                },
+                {
+                  "type": "text",
+                  "id": "pdl26",
+                  "name": "Compiler Name",
+                  "fill": "#C9D1D9",
+                  "content": "pkg/compiler — blueprint → graph",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11.5,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "o7N0mW",
+                  "name": "Compiler Tag",
+                  "fill": "#3FB950",
+                  "content": "● TODAY",
+                  "fontFamily": "Inter",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "YYUte",
+              "name": "Compiler Note",
+              "fill": "#8B949E",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "offline; emits a main() that runs and exits — target: emit a resident (generator.go:165-180)",
+              "lineHeight": 1.4,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "pCH9C",
+          "x": 0,
+          "y": 0,
+          "name": "Wire O-L",
+          "geometry": "M660 798l-166-362",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#30363D",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "Z6l2w",
+          "x": 0,
+          "y": 0,
+          "name": "Wire O-T",
+          "geometry": "M660 828l-166-160",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#30363D",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "hlq5V",
+          "x": 0,
+          "y": 0,
+          "name": "Wire O-S",
+          "geometry": "M660 856l-166 8",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#30363D",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "DuEbm",
+          "x": 0,
+          "y": 0,
+          "name": "Wire O-M",
+          "geometry": "M1000 798l206-386",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#30363D",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "q8E7vo",
+          "x": 0,
+          "y": 0,
+          "name": "Wire O-K",
+          "geometry": "M1000 828l206-202",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#30363D",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "x86BVQ",
+          "x": 0,
+          "y": 0,
+          "name": "Wire Self-N",
+          "geometry": "M818 472l-70-200",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#30363D",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "ZDcEB",
+          "x": 0,
+          "y": 0,
+          "name": "Wire Self-O",
+          "geometry": "M830 648l0 74m0 40l0 12",
+          "viewBox": [
+            0,
+            0,
+            2000,
+            1300
+          ],
+          "fill": "#00000000",
+          "width": 2000,
+          "height": 1300,
+          "stroke": "#30363D",
+          "strokeWidth": 1.6,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "ellipse",
+          "id": "Kt36p",
+          "x": 1080,
+          "y": 600,
+          "name": "V Glow 2",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#E3B34112",
+                "position": 0
+              },
+              {
+                "color": "#F851490A",
+                "position": 0.55
+              },
+              {
+                "color": "#F8514900",
+                "position": 1
+              }
+            ]
+          },
+          "width": 380,
+          "height": 300
+        },
+        {
+          "type": "frame",
+          "id": "Ycd20",
+          "x": 1180,
+          "y": 712,
+          "name": "V Label 2",
+          "width": 290,
+          "layout": "vertical",
+          "gap": 2,
+          "children": [
+            {
+              "type": "frame",
+              "id": "bzjZO",
+              "name": "V Head 2",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VDRV4",
+                  "name": "V Title 2",
+                  "fill": "#E3B341",
+                  "content": "V — THE VOICE",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "QwU05",
+                  "name": "V Tag 2",
+                  "fill": "#8B949E",
+                  "content": "◌ emergent · target",
+                  "fontFamily": "Inter",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "F4CriI",
+              "name": "V Text 2",
+              "fill": "#C9D1D9",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "V = R + O + E — emerges where the Hum, the logic, and the egress meet. Never a module: “a product needs a Voice Module; a person just speaks.”",
+              "lineHeight": 1.45,
+              "fontFamily": "Inter",
+              "fontSize": 10.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JRAfq",
+          "x": 70,
+          "y": 1108,
+          "name": "Legend 2",
+          "width": 1860,
+          "fill": "#11161D",
+          "cornerRadius": 14,
+          "stroke": "#21262D",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            16,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "m9DKeh",
+              "name": "Legend Convention",
+              "gap": 30,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "u9AnYO",
+                  "name": "Conv Today",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 5,
+                      "id": "dTWs1",
+                      "name": "Conv Today Chip",
+                      "fill": "#161B22",
+                      "width": 30,
+                      "height": 16,
+                      "stroke": "#C9D1D9",
+                      "strokeWidth": 1.6
+                    },
+                    {
+                      "type": "text",
+                      "id": "PJBfp",
+                      "name": "Conv Today Text",
+                      "fill": "#8B949E",
+                      "content": "● PRESENT TODAY — the Loop-A-only, cold repo (verdicts + file:line per specs/anatomy-gap-analysis.md §1)",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PLmT2",
+                  "name": "Conv Target",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 5,
+                      "id": "FcCKx",
+                      "name": "Conv Target Chip",
+                      "fill": "#161B2266",
+                      "width": 30,
+                      "height": 16,
+                      "stroke": "#C9D1D955",
+                      "strokeWidth": 1.6
+                    },
+                    {
+                      "type": "text",
+                      "id": "lDnTj",
+                      "name": "Conv Target Text",
+                      "fill": "#8B949E",
+                      "content": "◌ TARGET — the ratified resident-mind anatomy (2026-06-21): translucent fill, muted stroke, ◌ tag",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "t8hUn",
+              "name": "Legend Letters 2",
+              "gap": 22,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Xu86z",
+                  "name": "Key2 1",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "ayEty",
+                      "name": "Key2 Dot 1",
+                      "fill": "#E3B341",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "CNJLx",
+                      "name": "Key2 Letter 1",
+                      "fill": "#E3B341",
+                      "content": "1",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Cf0IU",
+                      "name": "Key2 Word 1",
+                      "fill": "#8B949E",
+                      "content": "Self — singular",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U7UvEt",
+                  "name": "Key2 N",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "Io2xx",
+                      "name": "Key2 Dot N",
+                      "fill": "#26A69A",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "Y0Qk5",
+                      "name": "Key2 Letter N",
+                      "fill": "#26A69A",
+                      "content": "N",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "dNg2a",
+                      "name": "Key2 Word N",
+                      "fill": "#8B949E",
+                      "content": "functions",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wmaBe",
+                  "name": "Key2 L",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "HUZ4Q",
+                      "name": "Key2 Dot L",
+                      "fill": "#A371F7",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "g8tVf",
+                      "name": "Key2 Letter L",
+                      "fill": "#A371F7",
+                      "content": "L",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Ky7Kc",
+                      "name": "Key2 Word L",
+                      "fill": "#8B949E",
+                      "content": "LLMs",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "K5vMH",
+                  "name": "Key2 T",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "bie6x",
+                      "name": "Key2 Dot T",
+                      "fill": "#F0883E",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "gqxlk",
+                      "name": "Key2 Letter T",
+                      "fill": "#F0883E",
+                      "content": "T",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "F7s69b",
+                      "name": "Key2 Word T",
+                      "fill": "#8B949E",
+                      "content": "tools",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lWhby",
+                  "name": "Key2 S",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "e49mY2",
+                      "name": "Key2 Dot S",
+                      "fill": "#DB61A2",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "YwyHv",
+                      "name": "Key2 Letter S",
+                      "fill": "#DB61A2",
+                      "content": "S",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "En5NB",
+                      "name": "Key2 Word S",
+                      "fill": "#8B949E",
+                      "content": "skills",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mmIKO",
+                  "name": "Key2 M",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "Gc8Ph",
+                      "name": "Key2 Dot M",
+                      "fill": "#4DD0E1",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "AC3YN",
+                      "name": "Key2 Letter M",
+                      "fill": "#4DD0E1",
+                      "content": "M",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "HCyD2",
+                      "name": "Key2 Word M",
+                      "fill": "#8B949E",
+                      "content": "MCP servers",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "T3MOcc",
+                  "name": "Key2 K",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "KHqah",
+                      "name": "Key2 Dot K",
+                      "fill": "#57AB5A",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "kGYIR",
+                      "name": "Key2 Letter K",
+                      "fill": "#57AB5A",
+                      "content": "K",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "f8HQXp",
+                      "name": "Key2 Word K",
+                      "fill": "#8B949E",
+                      "content": "knowledge",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "z11hKA",
+                  "name": "Key2 D",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "z40fPC",
+                      "name": "Key2 Dot D",
+                      "fill": "#6E7FF3",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "wvez0",
+                      "name": "Key2 Letter D",
+                      "fill": "#6E7FF3",
+                      "content": "D",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Fu4sm",
+                      "name": "Key2 Word D",
+                      "fill": "#8B949E",
+                      "content": "memory + schema",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "D7djXB",
+                  "name": "Key2 O",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "IDnDa",
+                      "name": "Key2 Dot O",
+                      "fill": "#9BA7B4",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "Ide5j",
+                      "name": "Key2 Letter O",
+                      "fill": "#9BA7B4",
+                      "content": "O",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gekXZ",
+                      "name": "Key2 Word O",
+                      "fill": "#8B949E",
+                      "content": "operations",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gCMSm",
+                  "name": "Key2 E",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "v2vRPN",
+                      "name": "Key2 Dot E",
+                      "fill": "#C9D1D9",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "VKkCp",
+                      "name": "Key2 Letter E",
+                      "fill": "#C9D1D9",
+                      "content": "E",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "IypjC",
+                      "name": "Key2 Word E",
+                      "fill": "#8B949E",
+                      "content": "membrane",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GGxlP",
+                  "name": "Key2 R",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "cwj3d",
+                      "name": "Key2 Dot R",
+                      "fill": "#F85149",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "rd8ix",
+                      "name": "Key2 Letter R",
+                      "fill": "#F85149",
+                      "content": "R",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hTI6N",
+                      "name": "Key2 Word R",
+                      "fill": "#8B949E",
+                      "content": "the Hum",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ou1yI",
+                  "name": "Key2 V",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "w3cmN",
+                      "name": "Key2 Dot V",
+                      "fill": "#E3B341",
+                      "width": 11,
+                      "height": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "C4bnS",
+                      "name": "Key2 Letter V",
+                      "fill": "#E3B341",
+                      "content": "V",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 12.5,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "QBdcl",
+                      "name": "Key2 Word V",
+                      "fill": "#8B949E",
+                      "content": "voice = R+O+E",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
