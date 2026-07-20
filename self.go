@@ -162,6 +162,19 @@ type Self struct {
 	stateShape []StateField      // M: the declared shape seeded into m
 	k          []KnowledgeSource // K: knowledge sources
 	d          MemoryStore       // D: the memory store handle
+
+	// episodeMu serializes episodes (Step 5 concurrency strategy, named:
+	// EPISODE SERIALIZATION). Every RunEpisode — request-driven through
+	// pkg/server or Hum-driven through an iteration body — runs one at a
+	// time against the banks, so interleaved episodes can never corrupt the
+	// transcript or the D write path. The Hum's iteration body runs WITHOUT
+	// this lock (no lock is held across the seam); a body that invokes
+	// RunEpisode serializes here like any other caller, deadlock-free.
+	episodeMu sync.Mutex
+
+	// hum is R: the Self's non-returning loop, when humming (see hum.go).
+	// Guarded by mu.
+	hum *Hum
 }
 
 // NewSelf constructs a Self from its Blueprint. Construction is where the
@@ -374,6 +387,12 @@ type EpisodeResult struct {
 // new turns back into D. The returned error covers pre-flight failures
 // (resolution, recall); execution failure is a Status of "failed".
 func (s *Self) RunEpisode(ctx context.Context, req EpisodeRequest) (EpisodeResult, error) {
+	// Episode serialization (Step 5): one episode at a time through the
+	// banks, whether the caller is a request handler or the Hum. See the
+	// episodeMu field comment for the full strategy.
+	s.episodeMu.Lock()
+	defer s.episodeMu.Unlock()
+
 	resolvedID, err := s.ResolveSelf(req.SelfID)
 	if err != nil {
 		return EpisodeResult{}, err

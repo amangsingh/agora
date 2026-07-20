@@ -63,6 +63,17 @@ func newRecallHarness(t *testing.T) (*AgentHandler, *captureLLM, *storage.Reposi
 	if err != nil {
 		t.Fatalf("failed to construct Self: %v", err)
 	}
+
+	// Step 5 (AC6, coexistence): the server's Self HUMS while the whole
+	// recall suite runs. Every test built on this harness now exercises
+	// request-driven episodes interleaved with live Hum iterations — the
+	// two loops sharing the one Self and its D bank.
+	hum, err := self.StartHum(agora.HumConfig{Interval: 2 * time.Millisecond})
+	if err != nil {
+		t.Fatalf("failed to start Hum: %v", err)
+	}
+	t.Cleanup(hum.Stop)
+
 	handler := &AgentHandler{Repo: repo, Self: self}
 	return handler, mock, repo
 }

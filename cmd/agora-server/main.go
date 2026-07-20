@@ -51,6 +51,17 @@ func main() {
 	}
 	log.Printf("Self %q constructed; banks live for process lifetime", self.ID())
 
+	// 3b. The Hum (Step 5): the server's Self starts its non-returning loop
+	// at process start. Loop A (inbound requests) and the Hum share this one
+	// Self and its D bank; episodes are serialized on the Self. The Hum is
+	// egress-less until Step 6 lands behind the SEC gate.
+	hum, err := self.StartHum(agora.HumConfig{})
+	if err != nil {
+		log.Fatalf("Failed to start Hum: %v", err)
+	}
+	defer hum.Stop() // liveness includes dying well
+	log.Printf("Self %q is humming (interval %s)", self.ID(), agora.DefaultHumInterval)
+
 	// 4. Handlers
 	handler := &server.AgentHandler{Repo: repo, Self: self}
 
