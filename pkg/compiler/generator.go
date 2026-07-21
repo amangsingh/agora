@@ -299,6 +299,14 @@ func run() int {
 	}
 	log.Printf("resident: self %q constructed; banks live for process lifetime", self.ID())
 
+	// Arm the death signal BEFORE the Hum starts writing D and before the
+	// membrane advertises readiness. If the handler were installed after those
+	// (as it once was), a SIGTERM arriving in that window would hit the Go
+	// default disposition and hard-kill the process mid-Hum — a potentially
+	// half-written D and no clean shutdown (AC8). Ordering here is load-bearing.
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
 	// R: the Hum. A declared rhythm (or the resident default, when the
 	// blueprint declares none) starts here; an explicit enabled: false
 	// stays quiet — the declaration is honored either way.
@@ -350,9 +358,8 @@ func run() int {
 		go residentProbe(hum)
 	}
 
-	// Live until told otherwise; then die well.
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	defer stop()
+	// Live until told otherwise; then die well. The handler was armed above,
+	// before the Hum and the membrane came up.
 	<-ctx.Done()
 
 	// Dying well, in order: drain the membrane first so in-flight episodes

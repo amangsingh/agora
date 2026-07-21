@@ -397,6 +397,52 @@ func TestResident_AC8_DiesWell(t *testing.T) {
 	}
 }
 
+// TestResident_AC8_SigtermAtReadiness_Durable (AC8/AC9, Finding 2): the
+// SIGTERM handler must be armed BEFORE the Hum starts writing D and before
+// readiness is advertised. Pre-fix, signal.NotifyContext was installed AFTER
+// StartHum and after the "serving ingress" line, so a SIGTERM landing at
+// readiness hit the Go default disposition and hard-killed the resident
+// mid-Hum (exit -1, no clean shutdown, potential half-written D). That window
+// made TestResident_AC8_DiesWell flaky (SEC reproduced 2/6 under -race).
+//
+// This test closes the flake into a deterministic durability bar: build the
+// resident ONCE, then repeatedly start it and SIGTERM it the instant the
+// serving line appears — the exact window SEC identified — asserting a clean
+// death EVERY iteration (exit 0, the dying-well line, and a D store that
+// reopens without error). A fast Hum interval keeps D actively being written
+// across the signal. Run under -race, this is the in-suite guard that the
+// handler-ordering regression can never come back.
+func TestResident_AC8_SigtermAtReadiness_Durable(t *testing.T) {
+	if testing.Short() {
+		t.Skip("durability loop skipped in -short mode")
+	}
+	_, bin := buildResident(t, residentBlueprint)
+
+	const iterations = 40
+	for i := 0; i < iterations; i++ {
+		dbPath := filepath.Join(t.TempDir(), "resident.db")
+		cmd, out := startResident(t, bin, filepath.Dir(dbPath),
+			"AGORA_HUM_INTERVAL=1ms", // D is written continuously across the signal
+			"AGORA_DB="+dbPath,
+		)
+		// Signal the instant readiness is advertised — the pre-fix window.
+		residentServingAddr(t, out)
+		code, exited := terminateResident(t, cmd, 10*time.Second)
+		if !exited {
+			t.Fatalf("iteration %d: resident did not exit within 10s of SIGTERM at readiness; output:\n%s", i, out.String())
+		}
+		if code != 0 {
+			t.Fatalf("iteration %d: SIGTERM at readiness hard-killed the resident (exit %d, want 0) — the handler is armed too late; output:\n%s", i, code, out.String())
+		}
+		if !strings.Contains(out.String(), "resident: hum stopped cleanly; dying well") {
+			t.Fatalf("iteration %d: no clean-shutdown line — resident did not die well; output:\n%s", i, out.String())
+		}
+		if _, err := storage.NewRepository(dbPath); err != nil {
+			t.Fatalf("iteration %d: D store does not reopen cleanly after SIGTERM (half-written D): %v", i, err)
+		}
+	}
+}
+
 // TestGenerateMain_AC3_BlueprintDerived (AC3): two blueprints differing in a
 // load-bearing declaration (the L member's base_url — where the mind's
 // compute lives) emit observably different residents. RED pre-change:

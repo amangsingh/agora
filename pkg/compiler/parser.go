@@ -14,6 +14,16 @@ import (
 // identifier or a bank address: no silent mangling, fail at parse instead.
 var identifierRegex = regexp.MustCompile(`^[a-zA-Z_][a-zA-Z0-9_]*$`)
 
+// projectNameRegex constrains bp.Project (SEC F1). The project name becomes
+// the emitted go.mod module directive (generator.go: `module %s`) AND a
+// runtime filesystem path (generator.go: dsn = bp.Project + ".db"), so it must
+// carry no character that could break out of either. The charset is a single
+// module-path element: it must start and end with an alphanumeric and contain
+// only alphanumerics, dot, underscore or hyphen — no whitespace, newline,
+// quote, backslash or slash. That refuses go.mod directive injection at the
+// source and keeps the name a safe, non-traversing path element.
+var projectNameRegex = regexp.MustCompile(`^[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?$`)
+
 // stateFieldTypes is the closed set of declarable M-bank field types and
 // their Go emissions. An unknown type fails loudly at parse — this repo's
 // node-type silent-drop history does not repeat at the blueprint layer.
@@ -68,6 +78,9 @@ func ParseBlueprintBytes(data []byte) (*Blueprint, error) {
 func validate(bp *Blueprint) error {
 	if bp.Project == "" {
 		return fmt.Errorf("project name is required")
+	}
+	if !projectNameRegex.MatchString(bp.Project) {
+		return fmt.Errorf("project name '%s' is invalid: must be a single module-path element (start/end alphanumeric; only letters, digits, '.', '_', '-') — no whitespace, quotes, slashes or newlines (it becomes the go.mod module directive and the D-store path)", bp.Project)
 	}
 	if bp.Graph.Entry == "" {
 		return fmt.Errorf("graph entry node is required")
