@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -149,6 +150,12 @@ type Blueprint struct {
 	// Recall declares the D bank's recall strategy — the nameable seam
 	// (see recall.go). Nil means MostRecentN{N: RecallWindow}.
 	Recall RecallStrategy
+
+	// Egress declares the E bank's outbound writers (Step 6): the ways this
+	// Self reaches the world. Empty is a Self with no way out — Reach
+	// refuses. Which writers exist is the consumer's policy; the framework
+	// provides the port (see egress.go).
+	Egress []EgressWriter
 }
 
 // Self is the 1: the singular owner of identity and the live resource banks
@@ -172,6 +179,14 @@ type Self struct {
 	k          []KnowledgeSource // K: knowledge sources
 	d          MemoryStore       // D: the memory store handle
 	recall     RecallStrategy    // D: the declared recall strategy over d
+
+	// e is the E bank's outbound half (Step 6): the writers this Self
+	// reaches the world through. Immutable after construction; bound to
+	// THIS Self — no ambient global writer exists (SEC gate identity
+	// discipline). egressFailures counts failed deliveries: observable,
+	// never fatal.
+	e              []EgressWriter
+	egressFailures atomic.Uint64
 
 	// episodeMu serializes episodes (Step 5 concurrency strategy, named:
 	// EPISODE SERIALIZATION). Every RunEpisode — request-driven through
@@ -221,6 +236,23 @@ func NewSelf(bp Blueprint) (*Self, error) {
 		sBank = append(sBank, SystemPrompt{Content: content})
 	}
 
+	// E bank (Step 6): declared outbound writers. Declaration defects fail
+	// construction loudly — same discipline as the S bank.
+	eNames := make(map[string]bool, len(bp.Egress))
+	for i, w := range bp.Egress {
+		if w == nil {
+			return nil, fmt.Errorf("blueprint for self %q declares a nil E-bank writer (index %d)", bp.ID, i)
+		}
+		name := w.Name()
+		if name == "" {
+			return nil, fmt.Errorf("blueprint for self %q declares an unnamed E-bank writer (index %d)", bp.ID, i)
+		}
+		if eNames[name] {
+			return nil, fmt.Errorf("blueprint for self %q declares duplicate E-bank writer %q", bp.ID, name)
+		}
+		eNames[name] = true
+	}
+
 	s := &Self{
 		id:         bp.ID,
 		name:       bp.Name,
@@ -233,6 +265,7 @@ func NewSelf(bp Blueprint) (*Self, error) {
 		k:          append([]KnowledgeSource(nil), bp.Knowledge...),
 		d:          bp.Memory,
 		recall:     bp.Recall,
+		e:          append([]EgressWriter(nil), bp.Egress...),
 	}
 
 	// D bank recall: an undeclared strategy means most-recent-N over the

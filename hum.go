@@ -194,13 +194,32 @@ func (h *Hum) loop(ctx context.Context) {
 // ownership contract; bodies must not call the Hum's accessors). The
 // swap-back happens only on success — a failing or cancelled iteration
 // leaves the previous state whole (no half-written working state).
+//
+// Step 6 (the Hum → egress path, Loop B's terminal arc): after a successful
+// iteration, outbound intents the body queued (QueueOutbound) are drained
+// from the working state UNDER the lock and delivered through the Self's E
+// bank AFTER the lock is released — delivery never holds the working state
+// hostage, and the lock order stays Hum.mu → episodeMu (Reach takes
+// neither). A failed delivery is logged and counted on the Self, and the
+// loop continues: egress failure never kills the Hum (a failing writer
+// costs a message, not the mind).
 func (h *Hum) iterate(ctx context.Context) {
 	h.mu.Lock()
 	next, err := h.body(ctx, h.self, h.working)
-	if err == nil && next != nil {
-		h.working = next
+	var outbound []OutboundMessage
+	if err == nil {
+		if next != nil {
+			h.working = next
+		}
+		outbound = drainOutbound(h.working)
 	}
 	h.mu.Unlock()
+
+	for _, msg := range outbound {
+		if derr := h.self.Reach(ctx, msg); derr != nil {
+			fmt.Printf("Self %s: egress delivery failed, loop continues: %v\n", h.self.id, derr)
+		}
+	}
 
 	h.iterations.Add(1)
 }

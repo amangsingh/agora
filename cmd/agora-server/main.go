@@ -45,6 +45,13 @@ func main() {
 		ModelFactory: func(model string) agora.Model {
 			return llm.NewOllamaLLM("http://localhost:11434/v1", model)
 		},
+		// E bank, outbound half (Step 6): the server declares its writers —
+		// policy lives here, the framework only provides the port. The first
+		// concrete writer is deliberately modest: JSON lines on stdout.
+		// Writers are bound to THIS Self; there is no ambient global writer.
+		Egress: []agora.EgressWriter{
+			agora.NewStreamWriter("stdout", os.Stdout),
+		},
 	})
 	if err != nil {
 		log.Fatalf("Failed to construct Self: %v", err)
@@ -53,9 +60,15 @@ func main() {
 
 	// 3b. The Hum (Step 5): the server's Self starts its non-returning loop
 	// at process start. Loop A (inbound requests) and the Hum share this one
-	// Self and its D bank; episodes are serialized on the Self. The Hum is
-	// egress-less until Step 6 lands behind the SEC gate.
-	hum, err := self.StartHum(agora.HumConfig{})
+	// Self and its D bank; episodes are serialized on the Self.
+	//
+	// Step 6 closes Loop B's terminal arc: the body is the minimal
+	// working-state-threshold trigger — one heartbeat through the declared
+	// stdout writer every 60 pulses (~1/min at the default cadence).
+	// Judgment about what a mind should say, and when, is Step 7's.
+	hum, err := self.StartHum(agora.HumConfig{
+		Body: agora.HeartbeatIteration(60, "stdout", "log"),
+	})
 	if err != nil {
 		log.Fatalf("Failed to start Hum: %v", err)
 	}
