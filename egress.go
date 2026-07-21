@@ -180,6 +180,71 @@ func HeartbeatIteration(every int, writer, target string) IterationFunc {
 	}
 }
 
+// JudgmentIteration returns the Step 7 iteration body: Loop B closed by
+// composition, not by a new component. V is not a module anywhere in this
+// codebase — it is the assertion that Step 5 (the Hum), Step 6 (the egress
+// bank), and O (an episode over the Self's state) compose, and this
+// function is that composition, an iteration BODY of exactly the same class
+// as PulseIteration and HeartbeatIteration.
+//
+// Each iteration behaves like PulseIteration. When the lent working state
+// carries an int value >= threshold under the watched key — the seeded,
+// deterministic condition the judgment OUGHT to act on (spec A2: a
+// working-state threshold; sophistication is explicitly not the goal) —
+// the body judges: it runs an episode over that state through the Self's
+// own banks via (*Self).RunEpisode, so recall warms from D, the verdict
+// comes from the L bank, and the episode's turns form engrams back into
+// the SAME D that Loop A writes — the shared crossing, no parallel write
+// path. The verdict is then queued as an outbound intent for the named
+// writer and target; the Hum delivers it through the E bank after the
+// iteration completes. R → O → judgment → E-egress → R: Loop B.
+//
+// Acting consumes the condition (the watched key is reset to zero), so one
+// seeded condition yields one reach — judgment-gated reach, never a
+// firehose. Absent the condition, iterations pulse and say nothing.
+//
+// OWNERSHIP CONTRACT (hum.go:52-68): this body runs under the Hum's
+// working-state lock and touches ONLY the lent state directly — it never
+// calls the Hum's outside-observer accessors (Working / SetWorking /
+// CurrentHum), which would self-deadlock by design. Its episode goes
+// through (*Self).RunEpisode, so the lock order stays strictly
+// Hum.mu → episodeMu, the one sanctioned order. Delivery of the queued
+// intent happens in the Hum, outside the lock (Reach takes neither).
+func JudgmentIteration(key string, threshold int, writer, target string) IterationFunc {
+	if threshold < 1 {
+		threshold = 1
+	}
+	return func(ctx context.Context, self *Self, working State) (State, error) {
+		next, err := PulseIteration(ctx, self, working)
+		if err != nil {
+			return nil, err
+		}
+		value, _ := next.Get(key).(int)
+		if value < threshold {
+			return next, nil
+		}
+
+		// The judgment acts: an O-episode over the Self's state, through
+		// the same banks and the same D write path as every Loop A episode.
+		verdict, err := self.RunEpisode(ctx, EpisodeRequest{
+			SelfID: self.id,
+			Input: fmt.Sprintf(
+				"judgment: working state %q is at %d (threshold %d) — decide what to say to %q",
+				key, value, threshold, target),
+		})
+		if err != nil {
+			return nil, err
+		}
+		if verdict.Status != "completed" {
+			return nil, fmt.Errorf("judgment episode of self %q failed: %s", self.id, verdict.Output)
+		}
+
+		next.Set(key, 0)
+		QueueOutbound(next, OutboundMessage{Writer: writer, Target: target, Content: verdict.Output})
+		return next, nil
+	}
+}
+
 // StreamWriter is the first concrete E-bank member: a JSON-line writer over
 // an io.Writer (stdout, a file). Deliberately modest — one message, one
 // line, no retries, no transport policy (spec A3: hardening beyond the SEC
