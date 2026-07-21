@@ -241,6 +241,67 @@ func TestHum_Lifecycle(t *testing.T) {
 	hum2.Stop()
 }
 
+// TestHum_BodyVsAccessorConcurrency (SEC re-review bar, Finding 1): a
+// sustained hammer proving the ownership model — an iteration body churning
+// the working state races against outside observers calling SetWorking /
+// Working — is safe under -race. This is NOT a one-shot probe: the body
+// writes 64 keys per iteration on a 100µs cadence while an accessor loop
+// hammers the same state for ~300ms.
+//
+// RED on merge 90bce99 (pre-fix): iterate() lent the working-state OBJECT to
+// the body outside h.mu, so body writes raced accessor reads/writes — the
+// race detector fires deterministically. GREEN under the fixed model: the
+// lock guards the object, not the pointer; while the body holds the state,
+// observers block until the Hum takes it back.
+func TestHum_BodyVsAccessorConcurrency(t *testing.T) {
+	self, _ := newHummingSelf(t, nil)
+
+	// churn body: mutates the lent working state heavily, every iteration.
+	churn := func(_ context.Context, _ *agora.Self, working agora.State) (agora.State, error) {
+		for i := 0; i < 64; i++ {
+			working.Set(churnKeys[i], i)
+		}
+		n, _ := working.Get("hum.pulses").(int)
+		working.Set("hum.pulses", n+1)
+		return working, nil
+	}
+
+	hum, err := self.StartHum(agora.HumConfig{Interval: 100 * time.Microsecond, Body: churn})
+	if err != nil {
+		t.Fatalf("StartHum failed: %v", err)
+	}
+	defer hum.Stop()
+
+	// accessor hammer: the outside-observer API, as fast as it will go.
+	deadline := time.Now().Add(300 * time.Millisecond)
+	var probes int
+	for time.Now().Before(deadline) {
+		hum.SetWorking("probe", probes)
+		if got := hum.Working("probe"); got != probes {
+			t.Fatalf("ownership violation: wrote probe=%d, read back %v — an iteration body clobbered a key it does not own", probes, got)
+		}
+		probes++
+	}
+
+	// The loop must have kept advancing while being observed.
+	if hum.Iterations() == 0 {
+		t.Fatalf("the Hum starved: zero iterations completed during 300ms of accessor traffic")
+	}
+	if probes == 0 {
+		t.Fatalf("the observer starved: zero accessor round-trips completed in 300ms — accessors never got the state back")
+	}
+}
+
+// churnKeys are pre-built so the churn body allocates nothing per iteration
+// that the race detector could mistake for synchronization.
+var churnKeys = func() [64]string {
+	var keys [64]string
+	for i := range keys {
+		keys[i] = "churn." + string(rune('a'+i%26)) + string(rune('0'+i/26))
+	}
+	return keys
+}()
+
 // denyModel is the AC5 canary: an L-bank member that must NEVER be invoked
 // by the Hum's default body. Any invocation is recorded and fails loudly.
 type denyModel struct {

@@ -49,6 +49,24 @@ const DefaultHumInterval = time.Second
 // through Graph.Execute as an episode against the Self's banks; the Hum takes
 // the returned state back and KEEPS IT IN RAM for the next iteration.
 //
+// OWNERSHIP CONTRACT (read this before writing a body):
+//
+// The lend is literal. The body runs UNDER the Hum's working-state lock —
+// while the body holds the state, outside observers (Working / SetWorking)
+// block until the Hum takes it back. That is what makes the state safe to
+// mutate directly: for the duration of the call, the body is the state's
+// only holder.
+//
+// Therefore a body MUST NOT call the Hum's own accessors (Working,
+// SetWorking) — those are the OUTSIDE-observer API, and calling them from
+// inside the body self-deadlocks by design. The body already holds the
+// state; touch it directly.
+//
+// A body that needs an episode calls (*Self).RunEpisode, which serializes on
+// the Self's episode lock. The lock order is strictly: working-state lock →
+// episode lock. No path acquires them in reverse (request-driven episodes
+// never touch the Hum's working state), so no inversion exists.
+//
 // A body returning (nil, err) leaves the previous working state untouched —
 // a failed iteration never costs the Self its accumulated state.
 type IterationFunc func(ctx context.Context, self *Self, working State) (State, error)
@@ -73,9 +91,15 @@ type Hum struct {
 	body     IterationFunc
 	interval time.Duration
 
-	// mu guards working. working is THE owned working state: it is created
-	// once at StartHum, mutated in place or replaced by iteration results,
-	// and never reconstructed from storage.
+	// mu guards working — the OBJECT, not merely the pointer. working is
+	// THE owned working state: it is created once at StartHum, mutated in
+	// place or replaced by iteration results, and never reconstructed from
+	// storage. mu is held for the ENTIRE iteration, body included: every
+	// touch of the working state — the body's writes inside iterate, and
+	// the accessors' reads/writes from outside — happens under this lock.
+	// (SEC Finding 1 fix: the previous model locked only the pointer swap
+	// and lent the object to the body unlocked, racing body writes against
+	// accessor traffic.)
 	mu      sync.Mutex
 	working State
 
@@ -164,20 +188,19 @@ func (h *Hum) loop(ctx context.Context) {
 }
 
 // iterate runs one iteration: lend the owned working state to the body, take
-// the result back, keep it. The swap-back happens only on success, under the
-// working-state lock — a failing or cancelled iteration leaves the previous
-// state whole (no half-written working state).
+// the result back, keep it. h.mu is held for the WHOLE iteration, body
+// included — the lend is literal: while the body holds the state, outside
+// observers block until the Hum takes it back (see the IterationFunc
+// ownership contract; bodies must not call the Hum's accessors). The
+// swap-back happens only on success — a failing or cancelled iteration
+// leaves the previous state whole (no half-written working state).
 func (h *Hum) iterate(ctx context.Context) {
 	h.mu.Lock()
-	working := h.working
-	h.mu.Unlock()
-
-	next, err := h.body(ctx, h.self, working)
+	next, err := h.body(ctx, h.self, h.working)
 	if err == nil && next != nil {
-		h.mu.Lock()
 		h.working = next
-		h.mu.Unlock()
 	}
+	h.mu.Unlock()
 
 	h.iterations.Add(1)
 }

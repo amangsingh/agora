@@ -177,9 +177,16 @@ type Self struct {
 	// EPISODE SERIALIZATION). Every RunEpisode — request-driven through
 	// pkg/server or Hum-driven through an iteration body — runs one at a
 	// time against the banks, so interleaved episodes can never corrupt the
-	// transcript or the D write path. The Hum's iteration body runs WITHOUT
-	// this lock (no lock is held across the seam); a body that invokes
-	// RunEpisode serializes here like any other caller, deadlock-free.
+	// transcript or the D write path.
+	//
+	// Lock invariants (SEC Finding 1 fix): the Hum's working state is
+	// touched ONLY under the Hum's own mutex, which is held for the entire
+	// iteration, body included. A Hum body that invokes RunEpisode
+	// therefore acquires episodeMu while holding the Hum's mutex — the lock
+	// order is strictly Hum.mu → episodeMu, and no reverse path exists:
+	// request-driven episodes never touch the Hum's working state, so
+	// nothing holding episodeMu ever waits on Hum.mu. Deadlock-free by
+	// ordering, not by lock avoidance.
 	episodeMu sync.Mutex
 
 	// hum is R: the Self's non-returning loop, when humming (see hum.go).
