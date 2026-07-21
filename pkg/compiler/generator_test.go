@@ -1,7 +1,6 @@
 package compiler
 
 import (
-	"fmt"
 	"go/parser"
 	"go/token"
 	"os"
@@ -72,26 +71,27 @@ edges:
 // is a failure this test is designed to surface, not an inconvenience to
 // route around.
 //
-// Three arms:
+// Three arms, all vetting the module EXACTLY AS EMITTED (Step 9 made the
+// emission self-resolving, so no arm needs test-side go.mod surgery anymore):
 //
-//   - ModuleResolution: vets the module exactly as emitted. The generated
-//     go.mod requires github.com/amangsingh/agora v0.0.0 — a version that
-//     is published nowhere — with no replace directive, so the generated
-//     project cannot resolve its own dependency (generator.go, generateGoMod).
+//   - ModuleResolution: historically red because the generated go.mod
+//     required github.com/amangsingh/agora v0.0.0 — a version published
+//     nowhere — with no replace directive. Step 9's generateGoMod
+//     materializes the replace at generation time; this arm keeps vetting
+//     the module as emitted so the resolution can never regress.
 //
-//   - ToolNodeGraph: appends a test-side `replace` directive pointing at
-//     this repo (neutralizing the go.mod defect ONLY, so vet can reach type
-//     checking) and compiles a blueprint shaped like the readme's tool_node
-//     example. The node emission loop in generateGraph is guarded by
-//     {{if eq .Type "agent"}}: non-agent nodes emit no code while their
-//     imports and inbound edges are still emitted, which must surface as
-//     type errors (unused imports / unused declarations), not silence.
+//   - ToolNodeGraph: a blueprint shaped like the readme's tool_node example.
+//     Historically red because generateGraph's agent-only guard emitted no
+//     code for tool nodes while still emitting their imports and inbound
+//     edges (unused imports / unused declarations). Step 9 emits tool nodes
+//     wired from the T bank; this arm keeps that emission honest.
 //
-//   - AgentGraph: same neutralization, agent-only blueprint — even the
-//     happy-path emission must type-check end to end.
+//   - AgentGraph: agent-only blueprint — the happy-path emission must
+//     type-check end to end.
 //
-// This test intentionally fails while the generator defects are present.
-// It is the standing gate that keeps them from drifting back once fixed.
+// This test failed while the generator defects were present (red at a42a428
+// on the first two arms). It is the standing gate that keeps them from
+// drifting back now that Step 9 closed them.
 func TestCompile_OutputCompiles(t *testing.T) {
 	// Shaped after the documented example in readme.md (tool_node section):
 	// an agent routing to a tool node with a feedback loop.
@@ -149,22 +149,15 @@ edges:
 	cases := []struct {
 		name      string
 		blueprint string
-		// neutralizeGoMod appends a replace directive so vet can get past
-		// module resolution and reach type checking. The ModuleResolution
-		// arm leaves the module exactly as the generator emitted it.
-		neutralizeGoMod bool
 	}{
-		{name: "ModuleResolution", blueprint: mixedBlueprint, neutralizeGoMod: false},
-		{name: "ToolNodeGraph", blueprint: toolOnlyBlueprint, neutralizeGoMod: true},
-		{name: "AgentGraph", blueprint: agentOnlyBlueprint, neutralizeGoMod: true},
+		{name: "ModuleResolution", blueprint: mixedBlueprint},
+		{name: "ToolNodeGraph", blueprint: toolOnlyBlueprint},
+		{name: "AgentGraph", blueprint: agentOnlyBlueprint},
 	}
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
 			outDir := generateProject(t, tc.blueprint)
-			if tc.neutralizeGoMod {
-				replaceAgoraWithLocalSource(t, outDir)
-			}
 			parseGeneratedGoFiles(t, outDir)
 			vetGeneratedModule(t, outDir)
 		})
@@ -185,27 +178,6 @@ func generateProject(t *testing.T, blueprint string) string {
 		t.Fatalf("Compile failed: %v", err)
 	}
 	return outDir
-}
-
-// replaceAgoraWithLocalSource appends a replace directive to the generated
-// go.mod pointing github.com/amangsingh/agora at this repository's source.
-// This deliberately neutralizes the go.mod resolution defect (covered by the
-// ModuleResolution arm) so that `go vet` can reach type checking and judge
-// the emitted Go code on its own merits.
-func replaceAgoraWithLocalSource(t *testing.T, outDir string) {
-	t.Helper()
-	repoRoot, err := filepath.Abs(filepath.Join("..", ".."))
-	if err != nil {
-		t.Fatalf("failed to resolve repo root: %v", err)
-	}
-	f, err := os.OpenFile(filepath.Join(outDir, "go.mod"), os.O_APPEND|os.O_WRONLY, 0644)
-	if err != nil {
-		t.Fatalf("failed to open generated go.mod: %v", err)
-	}
-	defer f.Close()
-	if _, err := fmt.Fprintf(f, "\nreplace github.com/amangsingh/agora => %s\n", repoRoot); err != nil {
-		t.Fatalf("failed to append replace directive: %v", err)
-	}
 }
 
 // parseGeneratedGoFiles runs every generated .go file through go/parser and

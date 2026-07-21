@@ -358,12 +358,11 @@ func TestElevenLetter_AC4_RatifiedAnatomyConstructs(t *testing.T) {
 }
 
 // AC3: the compile gate still bites — Step 0's compile-the-output discipline
-// passes over a project generated from an eleven-letter blueprint. Same
-// neutralization as TestCompile_OutputCompiles' type-checking arms: the
-// go.mod resolution defect is covered there, not re-litigated here.
+// passes over a project generated from an eleven-letter blueprint, exactly
+// as emitted (Step 9 made the emitted module self-resolving; no test-side
+// go.mod surgery remains anywhere).
 func TestElevenLetter_AC3_GeneratedProjectCompiles(t *testing.T) {
 	outDir := generateProject(t, elevenLetterAnatomyBlueprint)
-	replaceAgoraWithLocalSource(t, outDir)
 	parseGeneratedGoFiles(t, outDir)
 	vetGeneratedModule(t, outDir)
 }
