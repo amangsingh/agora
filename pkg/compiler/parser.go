@@ -39,7 +39,14 @@ func ParseBlueprint(path string) (*Blueprint, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to read blueprint file: %w", err)
 	}
+	return ParseBlueprintBytes(data)
+}
 
+// ParseBlueprintBytes parses an in-memory YAML declaration with the same
+// strictness as ParseBlueprint. It exists for consumers that carry the
+// declaration with them instead of on disk — the emitted resident (Step 9)
+// embeds its blueprint verbatim and re-reads it through this path at wake-up.
+func ParseBlueprintBytes(data []byte) (*Blueprint, error) {
 	dec := yaml.NewDecoder(bytes.NewReader(data))
 	dec.KnownFields(true)
 
